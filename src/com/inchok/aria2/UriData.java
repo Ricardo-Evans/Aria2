@@ -19,30 +19,30 @@
 
 package com.inchok.aria2;
 
-public class Gid {
-    private long gidNative;
+import java.net.URI;
 
-    Gid(long gidNative){
-        this.gidNative=gidNative;
+public class UriData {
+    private URI uri;
+    private UriStatus status;
+
+    UriData(URI uri,UriStatus status){
+        this.uri=uri;
+        this.status=status;
     }
 
-    public String toHex(){
-        return Aria2.gidToHexNative(this.gidNative);
+    public URI getUri() {
+        return this.uri;
     }
 
-    public static Gid toGid(String hexGid){
-        return new Gid(Aria2.hexToGidNative(hexGid));
+    void setUri(URI uri) {
+        this.uri = uri;
     }
 
-    public boolean isNull(){
-        return Aria2.isNull(this.gidNative);
+    public UriStatus getStatus() {
+        return this.status;
     }
 
-    long getGidNative() {
-        return this.gidNative;
-    }
-
-    void setGidNative(long gidNative) {
-        this.gidNative = gidNative;
+    void setStatus(UriStatus status) {
+        this.status = status;
     }
 }

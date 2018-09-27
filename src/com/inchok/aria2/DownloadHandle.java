@@ -19,30 +19,6 @@
 
 package com.inchok.aria2;
 
-public class Gid {
-    private long gidNative;
+public class DownloadHandle {
 
-    Gid(long gidNative){
-        this.gidNative=gidNative;
-    }
-
-    public String toHex(){
-        return Aria2.gidToHexNative(this.gidNative);
-    }
-
-    public static Gid toGid(String hexGid){
-        return new Gid(Aria2.hexToGidNative(hexGid));
-    }
-
-    public boolean isNull(){
-        return Aria2.isNull(this.gidNative);
-    }
-
-    long getGidNative() {
-        return this.gidNative;
-    }
-
-    void setGidNative(long gidNative) {
-        this.gidNative = gidNative;
-    }
 }

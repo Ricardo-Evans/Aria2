@@ -23,5 +23,35 @@ public class Aria2 {
     static {
         System.loadLibrary("aria2-native");
     }
+    private static Session session=null;
+    public static int INIT_OK=0;
 
+    public static int initialize(){
+        return Aria2.initializeNative();
+    }
+
+    public static int deInitialize(){
+        return Aria2.deInitializeNative();
+    }
+
+    public static Session sessionNew(final KeyValues options,SessionConfig config){
+        if (Aria2.session!=null) return Aria2.session;
+        else {
+            Aria2.session=new Session(sessionNewNative(options.getKeyValuesNative(),config.getSessionConfigNative()));
+            return Aria2.session;
+        }
+    }
+
+    public int sessionFinal(Session session){
+        if (Aria2.session==session) Aria2.session=null;
+        return Aria2.sessionFinalNative(session.getSessionNative());
+    }
+
+    private static native int initializeNative();
+    private static native int deInitializeNative();
+    private static native long sessionNewNative(long keyValuesNative,long sessionConfigNative);
+    private static native int sessionFinalNative(long sessionNative);
+    static native long hexToGidNative(String hexGid);
+    static native String gidToHexNative(long gidNative);
+    static native boolean isNull(long gidNative);
 }

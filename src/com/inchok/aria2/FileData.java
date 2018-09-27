@@ -19,5 +19,7 @@
 
 package com.inchok.aria2;
 
-public class KeyVals {
+public class FileData {
+    private long fileDataNative;
+
 }

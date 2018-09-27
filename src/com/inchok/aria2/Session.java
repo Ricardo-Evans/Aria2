@@ -20,4 +20,17 @@
 package com.inchok.aria2;
 
 public class Session {
+    private long sessionNative;
+
+    Session(long sessionNative){
+        this.sessionNative=sessionNative;
+    }
+
+    long getSessionNative() {
+        return this.sessionNative;
+    }
+
+    public int run(RunMode mode){
+
+    }
 }
