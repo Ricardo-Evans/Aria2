@@ -1,3 +1,4 @@
+
 /*
  * Copyright (C) 2018 inCHOK
  *
@@ -19,9 +20,8 @@
 
 package com.inchok.aria2;
 
-public class Aria2 {
-    static {
-        System.loadLibrary("aria2-native");
-    }
-
+public enum OffsetMode {
+    SET,
+    CUR,
+    END
 }
