@@ -19,10 +19,15 @@
 
 package com.inchok.aria2;
 
+import javafx.util.Pair;
+
+import java.util.List;
+
 public class KeyValues {
     private long keyValuesNative;
 
     long getKeyValuesNative() {
         return this.keyValuesNative;
     }
+
 }

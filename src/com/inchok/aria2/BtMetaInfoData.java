@@ -20,4 +20,5 @@
 package com.inchok.aria2;
 
 public class BtMetaInfoData {
+
 }

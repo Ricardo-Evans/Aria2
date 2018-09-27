@@ -29,8 +29,4 @@ public class Session {
     long getSessionNative() {
         return this.sessionNative;
     }
-
-    public int run(RunMode mode){
-
-    }
 }

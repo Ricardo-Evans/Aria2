@@ -26,6 +26,10 @@ public class Gid {
         this.gidNative=gidNative;
     }
 
+    public static Gid newGid(long gid){
+        return new Gid(Aria2.newGidNative(gid));
+    }
+
     public String toHex(){
         return Aria2.gidToHexNative(this.gidNative);
     }
@@ -35,7 +39,7 @@ public class Gid {
     }
 
     public boolean isNull(){
-        return Aria2.isNull(this.gidNative);
+        return Aria2.isNullNative(this.gidNative);
     }
 
     long getGidNative() {
@@ -45,4 +49,13 @@ public class Gid {
     void setGidNative(long gidNative) {
         this.gidNative = gidNative;
     }
+
+    public long getGid(){
+        return Aria2.getGidNative(this.gidNative);
+    }
+
+    public void setGid(long gid){
+        Aria2.setGidNative(this.gidNative,gid);
+    }
+
 }

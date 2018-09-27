@@ -53,5 +53,8 @@ public class Aria2 {
     private static native int sessionFinalNative(long sessionNative);
     static native long hexToGidNative(String hexGid);
     static native String gidToHexNative(long gidNative);
-    static native boolean isNull(long gidNative);
+    static native boolean isNullNative(long gidNative);
+    static native long getGidNative(long gidNative);
+    static native void setGidNative(long gidNative,long gid);
+    static native long newGidNative(long gid);
 }

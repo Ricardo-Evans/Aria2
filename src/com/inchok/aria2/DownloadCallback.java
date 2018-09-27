@@ -20,5 +20,5 @@
 package com.inchok.aria2;
 
 public interface DownloadCallback {
-    int onDownloadEvent();
+    int onDownloadEvent(Session session,DownloadEvent event,Gid gid,Object userData);
 }
