@@ -19,46 +19,92 @@
 
 package com.inchok.aria2;
 
+import java.util.List;
+
 public class Aria2 {
     static {
         System.loadLibrary("aria2-native");
     }
-    private static Session session=null;
-    public static int INIT_OK=0;
 
-    public static int initialize(){
+    public static final int RESPONSE_OK = 0;
+
+    public static int initialize() {
         return Aria2.initializeNative();
     }
 
-    public static int deInitialize(){
+    public static int deInitialize() {
         return Aria2.deInitializeNative();
     }
 
-    public static Session sessionNew(final KeyValues options,SessionConfig config){
-        if (Aria2.session!=null) return Aria2.session;
-        else {
-            Aria2.session=new Session(sessionNewNative(options.getKeyValuesNative(),config.getSessionConfigNative()));
-            return Aria2.session;
-        }
-    }
-
-    public int sessionFinal(Session session){
-        if (Aria2.session==session) Aria2.session=null;
-        return Aria2.sessionFinalNative(session.getSessionNative());
-    }
-
     private static native int initializeNative();
+
     private static native int deInitializeNative();
-    private static native long sessionNewNative(long keyValuesNative,long sessionConfigNative);
-    private static native int sessionFinalNative(long sessionNative);
+
+    static native long newSessionNative(long keyValuesNative, long sessionConfigNative);
+
+    static native int finalSessionNative(long sessionNative);
+
     static native long hexToGidNative(String hexGid);
+
     static native String gidToHexNative(long gidNative);
+
     static native boolean isNullNative(long gidNative);
+
     static native long getGidNative(long gidNative);
-    static native void setGidNative(long gidNative,long gid);
+
+    static native void setGidNative(long gidNative, long gid);
+
     static native long newGidNative(long gid);
+
     static native long newKeyValuesNative();
-    static native void setKeyValuesNative(long keyValuesNative,String key,String value);
-    static native String getKeyValuesNative(long keyValuesNative,String key);
-    static native long newSessionConfig();
+
+    static native void setKeyValuesNative(long keyValuesNative, String key, String value);
+
+    static native String getKeyValuesNative(long keyValuesNative, String key);
+
+    static native long newSessionConfigNative();
+
+    static native int getStatusNative(long downloadHandleNative);
+
+    static native long getTotalLengthNative(long downloadHandleNative);
+
+    static native long getCompletedLengthNative(long downloadHandleNative);
+
+    static native long getUploadLengthNative(long downloadHandleNative);
+
+    static native String getBitFieldNative(long downloadHandleNative);
+
+    static native int getDownloadSpeedNative(long downloadHandleNative);
+
+    static native int getUploadSpeedNative(long downloadHandleNative);
+
+    static native String getInfoHashNative(long downloadHandleNative);
+
+    static native long getPieceLengthNative(long downloadHandleNative);
+
+    static native int getPieceCountNative(long downloadHandleNative);
+
+    static native int getConnectionCountNative(long downloadHandleNative);
+
+    static native int getErrorCodeNative(long downloadHandleNative);
+
+    static native List<Long> getFollowedByNative(long downloadHandleNative);
+
+    static native long getFollowingNative(long downloadHandleNative);
+
+    static native long getBelongsToNative(long downloadHandleNative);
+
+    static native String getDirNative(long downloadHandleNative);
+
+    static native List<FileData> getFilesNative(long downloadNative);
+
+    static native int getFileCountNative(long downloadNative);
+
+    static native FileData getFileNative(long downloadNative, int index);
+
+    static native BtMetaInfoData getBtMetaInfoNative(long downloadNative);
+
+    static native String getOptionNative(long downloadHandleNative, String name);
+
+    static native long getOptionsNative(long downloadHandleNative);
 }

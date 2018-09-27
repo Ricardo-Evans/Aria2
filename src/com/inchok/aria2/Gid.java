@@ -22,23 +22,23 @@ package com.inchok.aria2;
 public class Gid {
     private long gidNative;
 
-    Gid(long gidNative){
-        this.gidNative=gidNative;
+    Gid(long gidNative) {
+        this.gidNative = gidNative;
     }
 
-    public static Gid newGid(long gid){
+    public static Gid newGid(long gid) {
         return new Gid(Aria2.newGidNative(gid));
     }
 
-    public String toHex(){
+    public String toHex() {
         return Aria2.gidToHexNative(this.gidNative);
     }
 
-    public static Gid toGid(String hexGid){
+    public static Gid toGid(String hexGid) {
         return new Gid(Aria2.hexToGidNative(hexGid));
     }
 
-    public boolean isNull(){
+    public boolean isNull() {
         return Aria2.isNullNative(this.gidNative);
     }
 
@@ -50,12 +50,12 @@ public class Gid {
         this.gidNative = gidNative;
     }
 
-    public long getGid(){
+    public long getGid() {
         return Aria2.getGidNative(this.gidNative);
     }
 
-    public void setGid(long gid){
-        Aria2.setGidNative(this.gidNative,gid);
+    public void setGid(long gid) {
+        Aria2.setGidNative(this.gidNative, gid);
     }
 
 }

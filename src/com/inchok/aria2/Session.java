@@ -21,12 +21,26 @@ package com.inchok.aria2;
 
 public class Session {
     private long sessionNative;
+    private static Session session = null;
 
-    Session(long sessionNative){
-        this.sessionNative=sessionNative;
+    Session(long sessionNative) {
+        this.sessionNative = sessionNative;
     }
 
     long getSessionNative() {
         return this.sessionNative;
+    }
+
+    public static Session newSession(final KeyValues options, SessionConfig config) {
+        if (Session.session != null) return Session.session;
+        else {
+            Session.session = new Session(Aria2.newSessionNative(options.getKeyValuesNative(), config.getSessionConfigNative()));
+            return Session.session;
+        }
+    }
+
+    public int finalSession() {
+        if (Session.session != null && Session.session != this) Session.session = null;
+        return Aria2.finalSessionNative(this.sessionNative);
     }
 }
