@@ -22,6 +22,7 @@ package com.inchok.aria2;
 import javafx.util.Pair;
 
 import java.util.List;
+import java.util.Objects;
 
 public class KeyValues {
     private long keyValuesNative;
@@ -46,4 +47,23 @@ public class KeyValues {
         return Aria2.getKeyValuesNative(this.keyValuesNative, key);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof KeyValues)) return false;
+        KeyValues keyValues = (KeyValues) o;
+        return getKeyValuesNative() == keyValues.getKeyValuesNative();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getKeyValuesNative());
+    }
+
+    @Override
+    public String toString() {
+        return "KeyValues{" +
+                "keyValuesNative=" + keyValuesNative +
+                '}';
+    }
 }

@@ -21,6 +21,7 @@ package com.inchok.aria2;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class DownloadHandle {
     private long downloadHandleNative;
@@ -123,4 +124,23 @@ public class DownloadHandle {
         Aria2.deleteDownloadHandleNative(this.downloadHandleNative);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof DownloadHandle)) return false;
+        DownloadHandle that = (DownloadHandle) o;
+        return downloadHandleNative == that.downloadHandleNative;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(downloadHandleNative);
+    }
+
+    @Override
+    public String toString() {
+        return "DownloadHandle{" +
+                "downloadHandleNative=" + downloadHandleNative +
+                '}';
+    }
 }

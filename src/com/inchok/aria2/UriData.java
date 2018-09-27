@@ -23,9 +23,9 @@ public class UriData {
     private String uri;
     private UriStatus status;
 
-    UriData(String uri,UriStatus status){
-        this.uri=uri;
-        this.status=status;
+    UriData(String uri, UriStatus status) {
+        this.uri = uri;
+        this.status = status;
     }
 
     public String getUri() {

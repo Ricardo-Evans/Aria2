@@ -19,14 +19,67 @@
 
 package com.inchok.aria2;
 
-public class SessionConfig {
-    private long sessionConfigNative;
+import java.util.Objects;
 
-    long getSessionConfigNative() {
-        return this.sessionConfigNative;
-    }
+public class SessionConfig {
+    private boolean keepRunning = false;
+    private boolean useSignalHandler = true;
+    private DownloadCallback downloadCallback = null;
 
     public SessionConfig() {
-        this.sessionConfigNative = Aria2.newSessionConfigNative();
+    }
+
+    public SessionConfig(boolean keepRunning, boolean useSignalHandler, DownloadCallback downloadCallback) {
+        this.keepRunning = keepRunning;
+        this.useSignalHandler = useSignalHandler;
+        this.downloadCallback = downloadCallback;
+    }
+
+    public boolean isKeepRunning() {
+        return this.keepRunning;
+    }
+
+    public void setKeepRunning(boolean keepRunning) {
+        this.keepRunning = keepRunning;
+    }
+
+    public boolean isUseSignalHandler() {
+        return this.useSignalHandler;
+    }
+
+    public void setUseSignalHandler(boolean useSignalHandler) {
+        this.useSignalHandler = useSignalHandler;
+    }
+
+    public DownloadCallback getDownloadCallback() {
+        return this.downloadCallback;
+    }
+
+    public void setDownloadCallback(DownloadCallback downloadCallback) {
+        this.downloadCallback = downloadCallback;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SessionConfig)) return false;
+        SessionConfig that = (SessionConfig) o;
+        return isKeepRunning() == that.isKeepRunning() &&
+                isUseSignalHandler() == that.isUseSignalHandler() &&
+                Objects.equals(getDownloadCallback(), that.getDownloadCallback());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(isKeepRunning(), isUseSignalHandler(), getDownloadCallback());
+    }
+
+    @Override
+    public String toString() {
+        return "SessionConfig{" +
+                "keepRunning=" + keepRunning +
+                ", useSignalHandler=" + useSignalHandler +
+                ", downloadCallback=" + downloadCallback +
+                '}';
     }
 }

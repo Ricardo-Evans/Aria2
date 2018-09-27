@@ -20,6 +20,7 @@
 package com.inchok.aria2;
 
 import java.util.List;
+import java.util.Objects;
 
 public class FileData {
     private int index;
@@ -60,5 +61,35 @@ public class FileData {
 
     public List<UriData> getUris() {
         return this.uris;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof FileData)) return false;
+        FileData fileData = (FileData) o;
+        return getIndex() == fileData.getIndex() &&
+                getLength() == fileData.getLength() &&
+                getCompletedLength() == fileData.getCompletedLength() &&
+                isSelected() == fileData.isSelected() &&
+                Objects.equals(getPath(), fileData.getPath()) &&
+                Objects.equals(getUris(), fileData.getUris());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getIndex(), getPath(), getLength(), getCompletedLength(), isSelected(), getUris());
+    }
+
+    @Override
+    public String toString() {
+        return "FileData{" +
+                "index=" + index +
+                ", path='" + path + '\'' +
+                ", length=" + length +
+                ", completedLength=" + completedLength +
+                ", selected=" + selected +
+                ", uris=" + uris +
+                '}';
     }
 }

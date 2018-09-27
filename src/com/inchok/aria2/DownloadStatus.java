@@ -19,7 +19,7 @@
 
 package com.inchok.aria2;
 
-public enum  DownloadStatus {
+public enum DownloadStatus {
     ACTIVE,
     WAITING,
     PAUSED,
@@ -27,15 +27,22 @@ public enum  DownloadStatus {
     ERROR,
     REMOVED;
 
-    static DownloadStatus DownloadStatus(int i){
-        switch (i){
-            case 0:return DownloadStatus.ACTIVE;
-            case 1:return DownloadStatus.WAITING;
-            case 2:return DownloadStatus.PAUSED;
-            case 3:return DownloadStatus.COMPLETE;
-            case 4:return DownloadStatus.ERROR;
-            case 5:return DownloadStatus.REMOVED;
-            default:return null;
+    static DownloadStatus DownloadStatus(int i) {
+        switch (i) {
+            case 0:
+                return DownloadStatus.ACTIVE;
+            case 1:
+                return DownloadStatus.WAITING;
+            case 2:
+                return DownloadStatus.PAUSED;
+            case 3:
+                return DownloadStatus.COMPLETE;
+            case 4:
+                return DownloadStatus.ERROR;
+            case 5:
+                return DownloadStatus.REMOVED;
+            default:
+                return null;
         }
     }
 }

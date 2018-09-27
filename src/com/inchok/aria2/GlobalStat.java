@@ -19,6 +19,8 @@
 
 package com.inchok.aria2;
 
+import java.util.Objects;
+
 public class GlobalStat {
     private int downloadSpeed;
     private int uploadSpeed;
@@ -72,5 +74,33 @@ public class GlobalStat {
 
     void setStopped(int numStopped) {
         this.numStopped = numStopped;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof GlobalStat)) return false;
+        GlobalStat that = (GlobalStat) o;
+        return getDownloadSpeed() == that.getDownloadSpeed() &&
+                getUploadSpeed() == that.getUploadSpeed() &&
+                numActive == that.numActive &&
+                numWaiting == that.numWaiting &&
+                numStopped == that.numStopped;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getDownloadSpeed(), getUploadSpeed(), numActive, numWaiting, numStopped);
+    }
+
+    @Override
+    public String toString() {
+        return "GlobalStat{" +
+                "downloadSpeed=" + downloadSpeed +
+                ", uploadSpeed=" + uploadSpeed +
+                ", numActive=" + numActive +
+                ", numWaiting=" + numWaiting +
+                ", numStopped=" + numStopped +
+                '}';
     }
 }

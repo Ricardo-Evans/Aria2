@@ -19,6 +19,8 @@
 
 package com.inchok.aria2;
 
+import java.util.Objects;
+
 public class Gid {
     private long gidNative;
 
@@ -58,4 +60,23 @@ public class Gid {
         Aria2.setGidNative(this.gidNative, gid);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Gid)) return false;
+        Gid gid = (Gid) o;
+        return getGidNative() == gid.getGidNative();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getGidNative());
+    }
+
+    @Override
+    public String toString() {
+        return "Gid{" +
+                "gidNative=" + gidNative +
+                '}';
+    }
 }

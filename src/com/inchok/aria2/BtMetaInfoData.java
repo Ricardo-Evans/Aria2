@@ -21,6 +21,7 @@ package com.inchok.aria2;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class BtMetaInfoData {
     private List<List<String>> announceList;
@@ -57,4 +58,31 @@ public class BtMetaInfoData {
         return this.name;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BtMetaInfoData)) return false;
+        BtMetaInfoData that = (BtMetaInfoData) o;
+        return Objects.equals(getAnnounceList(), that.getAnnounceList()) &&
+                Objects.equals(getComment(), that.getComment()) &&
+                Objects.equals(getCreationDate(), that.getCreationDate()) &&
+                getMode() == that.getMode() &&
+                Objects.equals(getName(), that.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getAnnounceList(), getComment(), getCreationDate(), getMode(), getName());
+    }
+
+    @Override
+    public String toString() {
+        return "BtMetaInfoData{" +
+                "announceList=" + announceList +
+                ", comment='" + comment + '\'' +
+                ", creationDate=" + creationDate +
+                ", mode=" + mode +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
