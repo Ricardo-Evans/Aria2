@@ -19,7 +19,46 @@
 
 package com.inchok.aria2;
 
-public class FileData {
-    private long fileDataNative;
+import java.util.List;
 
+public class FileData {
+    private int index;
+    private String path;
+    private long length;
+    private long completedLength;
+    private boolean selected;
+    private List<UriData> uris;
+
+    FileData(int index, String path, long length, long completedLength, boolean selected, List<UriData> uris) {
+        this.index = index;
+        this.path = path;
+        this.length = length;
+        this.completedLength = completedLength;
+        this.selected = selected;
+        this.uris = uris;
+    }
+
+    public int getIndex() {
+        return this.index;
+    }
+
+    public String getPath() {
+        return this.path;
+    }
+
+    public long getLength() {
+        return this.length;
+    }
+
+    public long getCompletedLength() {
+        return this.completedLength;
+    }
+
+    public boolean isSelected() {
+        return this.selected;
+    }
+
+    public List<UriData> getUris() {
+        return this.uris;
+    }
 }

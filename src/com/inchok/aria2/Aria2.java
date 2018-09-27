@@ -57,4 +57,8 @@ public class Aria2 {
     static native long getGidNative(long gidNative);
     static native void setGidNative(long gidNative,long gid);
     static native long newGidNative(long gid);
+    static native long newKeyValuesNative();
+    static native void setKeyValuesNative(long keyValuesNative,String key,String value);
+    static native String getKeyValuesNative(long keyValuesNative,String key);
+    static native long newSessionConfig();
 }

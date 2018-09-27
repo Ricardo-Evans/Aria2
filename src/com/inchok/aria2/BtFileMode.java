@@ -22,5 +22,5 @@ package com.inchok.aria2;
 public enum BtFileMode {
     NONE,
     SINGLE,
-    MULTI,
+    MULTI
 }

@@ -30,4 +30,20 @@ public class KeyValues {
         return this.keyValuesNative;
     }
 
+    KeyValues(long keyValuesNative){
+        this.keyValuesNative=keyValuesNative;
+    }
+
+    public KeyValues(){
+        this.keyValuesNative=Aria2.newKeyValuesNative();
+    }
+
+    public void set(String key,String value){
+        Aria2.setKeyValuesNative(this.keyValuesNative,key,value);
+    }
+
+    public String get(String key){
+        return Aria2.getKeyValuesNative(this.keyValuesNative,key);
+    }
+
 }

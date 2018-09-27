@@ -25,4 +25,8 @@ public class SessionConfig {
     long getSessionConfigNative() {
         return this.sessionConfigNative;
     }
+
+    public SessionConfig(){
+        this.sessionConfigNative=Aria2.newSessionConfig();
+    }
 }

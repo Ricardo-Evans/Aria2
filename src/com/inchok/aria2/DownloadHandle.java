@@ -20,5 +20,10 @@
 package com.inchok.aria2;
 
 public class DownloadHandle {
+    private long downloadHandleNative;
+
+    DownloadHandle(long downloadHandleNative) {
+        this.downloadHandleNative = downloadHandleNative;
+    }
 
 }

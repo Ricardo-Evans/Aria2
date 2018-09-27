@@ -19,6 +19,42 @@
 
 package com.inchok.aria2;
 
+import java.util.Date;
+import java.util.List;
+
 public class BtMetaInfoData {
+    private List<List<String>> announceList;
+    private String comment;
+    private Date creationDate;
+    private BtFileMode mode;
+    private String name;
+
+    BtMetaInfoData(List<List<String>> announceList, String comment, Date creationDate, BtFileMode mode, String name) {
+        this.announceList = announceList;
+        this.comment = comment;
+        this.creationDate = creationDate;
+        this.mode = mode;
+        this.name = name;
+    }
+
+    public List<List<String>> getAnnounceList() {
+        return this.announceList;
+    }
+
+    public String getComment() {
+        return this.comment;
+    }
+
+    public Date getCreationDate() {
+        return this.creationDate;
+    }
+
+    public BtFileMode getMode() {
+        return this.mode;
+    }
+
+    public String getName() {
+        return this.name;
+    }
 
 }
