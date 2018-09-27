@@ -23,7 +23,7 @@ public class Session {
     private long sessionNative;
     private static Session session = null;
 
-    Session(long sessionNative) {
+    private Session(long sessionNative) {
         this.sessionNative = sessionNative;
     }
 
