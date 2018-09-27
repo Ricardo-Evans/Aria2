@@ -19,22 +19,20 @@
 
 package com.inchok.aria2;
 
-import java.net.URI;
-
 public class UriData {
-    private URI uri;
+    private String uri;
     private UriStatus status;
 
-    UriData(URI uri,UriStatus status){
+    UriData(String uri,UriStatus status){
         this.uri=uri;
         this.status=status;
     }
 
-    public URI getUri() {
+    public String getUri() {
         return this.uri;
     }
 
-    void setUri(URI uri) {
+    void setUri(String uri) {
         this.uri = uri;
     }
 

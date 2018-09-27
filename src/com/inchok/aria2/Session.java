@@ -19,6 +19,9 @@
 
 package com.inchok.aria2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Session {
     private long sessionNative;
     private static Session session = null;
@@ -43,4 +46,43 @@ public class Session {
         if (Session.session != null && Session.session != this) Session.session = null;
         return Aria2.finalSessionNative(this.sessionNative);
     }
+
+    public int run(RunMode mode) {
+        return Aria2.run(this.sessionNative, mode.ordinal());
+    }
+
+    public int addUri(Gid gid, List<String> uris, KeyValues options) {
+        return this.addUri(gid, uris, options, -1);
+    }
+
+    public int addUri(Gid gid, List<String> uris, KeyValues options, int position) {
+        return Aria2.addUriNative(gid.getGidNative(), uris, options.getKeyValuesNative(), position);
+    }
+
+    public int addMetaLink(List<Gid> gids, String metaLinkFilePath, KeyValues options) {
+        return this.addMetaLink(gids, metaLinkFilePath, options, -1);
+    }
+
+    public int addMetaLink(List<Gid> gids, String metaLinkFilePath, KeyValues options, int position) {
+        List<Long> gidsNative = new ArrayList<>();
+        for (Gid gid : gids) gidsNative.add(gid.getGidNative());
+        return Aria2.addMetaLinkNative(gidsNative, metaLinkFilePath, options.getKeyValuesNative(), position);
+    }
+
+    public int addTorrent(Gid gid, String torrentFilePath, KeyValues options) {
+        return this.addTorrent(gid, torrentFilePath, options, -1);
+    }
+
+    public int addTorrent(Gid gid, String torrentFilePath, KeyValues options, int position) {
+        return Aria2.addTorrentNative(gid.getGidNative(), torrentFilePath, options.getKeyValuesNative(), position);
+    }
+
+    public int addTorrent(Gid gid, String torrentFilePath, List<String> webSeedUris, KeyValues options) {
+        return this.addTorrent(gid, torrentFilePath, webSeedUris, options, -1);
+    }
+
+    public int addTorrent(Gid gid, String torrentFilePath, List<String> webSeedUris, KeyValues options, int position) {
+        return Aria2.addTorrentNative(gid.getGidNative(), torrentFilePath, webSeedUris, options.getKeyValuesNative(), position);
+    }
+
 }

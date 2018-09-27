@@ -119,4 +119,8 @@ public class DownloadHandle {
         return new KeyValues(Aria2.getOptionsNative(this.downloadHandleNative));
     }
 
+    public void delete() {
+        Aria2.deleteDownloadHandleNative(this.downloadHandleNative);
+    }
+
 }

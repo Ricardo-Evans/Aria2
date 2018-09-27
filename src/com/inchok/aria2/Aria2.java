@@ -107,4 +107,16 @@ public class Aria2 {
     static native String getOptionNative(long downloadHandleNative, String name);
 
     static native long getOptionsNative(long downloadHandleNative);
+
+    static native void deleteDownloadHandleNative(long downloadHandleNative);
+
+    static native int run(long sessionNative, int runMode);
+
+    static native int addUriNative(long gidNative, List<String> uris, long optionsNative, int position);
+
+    static native int addMetaLinkNative(List<Long> gidsNative, String metaLinkFilePath, long optionsNative, int position);
+
+    static native int addTorrentNative(long gidNative, String torrentFilePath, long optionsNative, int position);
+
+    static native int addTorrentNative(long gidNative, String torrentFilePath, List<String> webSeedUris, long optionsNative, int position);
 }
