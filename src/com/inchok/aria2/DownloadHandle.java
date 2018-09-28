@@ -27,7 +27,7 @@ import java.util.Objects;
  * The handle to get the detail information of a specific download.
  * <p>To get the download handle, use Session.getDownloadHandle(Gid).</p>
  * <p>The lifetime of a DownloadHandle is before the next call of Session.run() or Session.sessionFinal(), you must call DownloadHandle.delete() before that.</p>
- * <p>It's <strong>responsibility</strong> for you to call DownloadHandle.delete() to delete the download handle.</>
+ * <p>It's <strong>responsibility</strong> for you to call DownloadHandle.delete() to delete the download handle.</p>
  *
  * @author inCHOK
  * @version Version 1.0
@@ -270,7 +270,7 @@ public class DownloadHandle {
     /**
      * To delete this download handle.
      * <p>The lifetime of a DownloadHandle is before the next call of Session.run() or Session.sessionFinal(), you must call this method before that.</p>
-     * <p>It's <strong>responsibility</strong> for you to call this method to delete the download handle.</>
+     * <p>It's <strong>responsibility</strong> for you to call this method to delete the download handle.</p>
      */
     public void delete() {
         Aria2.deleteDownloadHandleNative(this.downloadHandleNative);
