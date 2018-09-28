@@ -20,11 +20,36 @@
 
 package com.inchok.aria2;
 
+/**
+ * The type of the download event used in DownloadCallback.onDownloadEvent(Session, DownloadEvent, Gid).
+ *
+ * @author inCHOK
+ * @version Version 1.0
+ * @see DownloadCallback#onDownloadEvent(Session, DownloadEvent, Gid)
+ */
 public enum DownloadEvent {
+    /**
+     * A download has started.
+     */
     ON_DOWNLOAD_START,
+    /**
+     * A download has paused.
+     */
     ON_DOWNLOAD_PAUSE,
+    /**
+     * A download has stopped.
+     */
     ON_DOWNLOAD_STOP,
+    /**
+     * A download has completed.
+     */
     ON_DOWNLOAD_COMPLETE,
+    /**
+     * A download has met some error.
+     */
     ON_DOWNLOAD_ERROR,
+    /**
+     * A bt download has completed.(But may still continue to seeding.)
+     */
     ON_BT_DOWNLOAD_COMPLETE
 }

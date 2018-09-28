@@ -23,6 +23,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * The bit torrent meta info data retrieved from ".torrent" file.
+ * To get these data, call DownloadHandle.getBtMetaInfoData().
+ *
+ * @author inCHOK
+ * @version Version 1.0
+ * @see DownloadHandle#getBtMetaInfo()
+ */
 public class BtMetaInfoData {
     private List<List<String>> announceList;
     private String comment;
@@ -38,26 +46,61 @@ public class BtMetaInfoData {
         this.name = name;
     }
 
+    /**
+     * To get the announce URIs of the torrent file.
+     * If torrent contains <cite>announce</cite> instead of <cite>announce-list</cite>, <cite>announce</cite> is converted into <cite>announce-list</cite> format.
+     *
+     * @return Return the list of lists of announce URIs of the torrent file.
+     */
     public List<List<String>> getAnnounceList() {
         return this.announceList;
     }
 
+    /**
+     * To get the comment of the torrent file.
+     * <cite>comment-utf8</cite> is used if available.
+     *
+     * @return Return the comment of the torrent file.
+     */
     public String getComment() {
         return this.comment;
     }
 
+    /**
+     * To get the create time of the torrent file.
+     *
+     * @return Return the create time of the torrent file.
+     */
     public Date getCreationDate() {
         return this.creationDate;
     }
 
+    /**
+     * To get the bit torrent file mode.
+     *
+     * @return Return the bit torrent file mode
+     * @see BtFileMode
+     */
     public BtFileMode getMode() {
         return this.mode;
     }
 
+    /**
+     * To get the <cite>name</cite> in <cite>info</cite> dictionary.
+     * <cite>name-utf8</cite> is used instead of <cite>name</cite> if available.
+     *
+     * @return Return the <cite>name</cite> in <cite>info</cite> dictionary.
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * To compare whether two BtMetaInfoData is equal.
+     *
+     * @param o The object to be compared with.
+     * @return Return true if the two objects are equal, otherwise return false.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -70,11 +113,21 @@ public class BtMetaInfoData {
                 Objects.equals(getName(), that.getName());
     }
 
+    /**
+     * To get the hash code of the BtMetaInfoData.
+     *
+     * @return Return the hash code of the BtMetaInfoData.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(getAnnounceList(), getComment(), getCreationDate(), getMode(), getName());
     }
 
+    /**
+     * To convert the BtMetaInfoData into a String.
+     *
+     * @return Return the String result.
+     */
     @Override
     public String toString() {
         return "BtMetaInfoData{" +

@@ -19,25 +19,5 @@
 
 package com.inchok.aria2;
 
-/**
- * The mode of bit torrent file mode in BtMetaInfo.
- * To get the bit torrent file mode, call BtMetaInfo.getMode().
- *
- * @author inCHOK
- * @version Version 1.0
- * @see BtMetaInfoData#getMode()
- */
-public enum BtFileMode {
-    /**
-     * Indicating no mode. This value is used when the file mode is not available.
-     */
-    NONE,
-    /**
-     * Indicating single file torrent.
-     */
-    SINGLE,
-    /**
-     * Indicating multi file torrent.
-     */
-    MULTI
+public class ErrorCode {
 }

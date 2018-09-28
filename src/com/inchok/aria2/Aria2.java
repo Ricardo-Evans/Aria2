@@ -21,17 +21,48 @@ package com.inchok.aria2;
 
 import java.util.List;
 
+/**
+ * The static class which operates the global operations.
+ * Before you do anything with Aria2, you must call Aria2.initialize() first to initialize. After you finish your task, you need to call Aria2.deInitialize() to release the static global resources.
+ *
+ * @author inCHOK
+ * @version Version 1.0
+ * @see Aria2#initialize()
+ * @see Aria2#deInitialize()
+ */
 public class Aria2 {
     static {
         System.loadLibrary("aria2-native");
     }
 
+    /**
+     * The response code when any operation succeed.
+     */
     public static final int RESPONSE_OK = 0;
 
+    private Aria2() {
+    }
+
+    /**
+     * Initialize the global data.
+     * Call this static method <strong>only once</strong> before any other operations of Aria2.
+     *
+     * @return Return Aria2.RESPONSE_OK if succeed, or any other negative error code.
+     * @see Aria2#RESPONSE_OK
+     * @see ErrorCode
+     */
     public static int initialize() {
         return Aria2.initializeNative();
     }
 
+    /**
+     * Release all the global data.
+     * Call this static method <strong>only once</strong> after all the tasks of Aria2 are finished.
+     *
+     * @return Return Aria2.RESPONSE_OK if succeed, or any other negative error code.
+     * @see Aria2#RESPONSE_OK
+     * @see ErrorCode
+     */
     public static int deInitialize() {
         return Aria2.deInitializeNative();
     }
@@ -62,13 +93,13 @@ public class Aria2 {
 
     static native String getKeyValuesNative(long keyValuesNative, String key);
 
-    static native int getStatusNative(long downloadHandleNative);
+    static native DownloadStatus getStatusNative(long downloadHandleNative);
 
     static native long getTotalLengthNative(long downloadHandleNative);
 
     static native long getCompletedLengthNative(long downloadHandleNative);
 
-    static native long getUploadLengthNative(long downloadHandleNative);
+    static native long getUploadedLengthNative(long downloadHandleNative);
 
     static native String getBitFieldNative(long downloadHandleNative);
 
@@ -94,7 +125,7 @@ public class Aria2 {
 
     static native String getDirNative(long downloadHandleNative);
 
-    static native List<FileData> getFilesNative(long downloadNative);
+    static native List<FileData> getFilesDataNative(long downloadNative);
 
     static native int getFileCountNative(long downloadNative);
 
