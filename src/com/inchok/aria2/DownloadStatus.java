@@ -19,11 +19,37 @@
 
 package com.inchok.aria2;
 
+/**
+ * The status of downloads.
+ * To get the status of a download, use DownloadHandle.getStatus().
+ *
+ * @author inCHOK
+ * @version Version 1.0
+ * @see DownloadHandle#getStatus()
+ */
 public enum DownloadStatus {
+    /**
+     * Indicating the download is downloading/seeding.
+     */
     ACTIVE,
+    /**
+     * Indicating the download is in the queue, but not started yet.
+     */
     WAITING,
+    /**
+     * Indicating the download is paused.
+     */
     PAUSED,
+    /**
+     * Indicating the download is stopped or completed.
+     */
     COMPLETE,
+    /**
+     * Indicating the download is stopped because of error.
+     */
     ERROR,
+    /**
+     * Indicating the download is removed by user's discretion.
+     */
     REMOVED
 }
