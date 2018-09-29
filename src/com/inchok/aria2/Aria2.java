@@ -49,7 +49,6 @@ public class Aria2 {
      *
      * @return Return Aria2.RESPONSE_OK if succeed, or any other negative error code.
      * @see Aria2#RESPONSE_OK
-     * @see ErrorCode
      */
     public static int initialize() {
         return Aria2.initializeNative();
@@ -61,7 +60,6 @@ public class Aria2 {
      *
      * @return Return Aria2.RESPONSE_OK if succeed, or any other negative error code.
      * @see Aria2#RESPONSE_OK
-     * @see ErrorCode
      */
     public static int deInitialize() {
         return Aria2.deInitializeNative();

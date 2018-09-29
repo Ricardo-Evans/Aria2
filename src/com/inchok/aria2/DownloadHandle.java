@@ -250,7 +250,7 @@ public class DownloadHandle {
      *
      * @param name The option name.
      * @return Return the option of this download of the specific name.
-     * @see OptionName
+     * @see Option
      */
     public String getOption(String name) {
         return Aria2.getOptionNative(this.downloadHandleNative, name);
@@ -261,7 +261,7 @@ public class DownloadHandle {
      *
      * @return Return all the options of this download.
      * @see KeyValues
-     * @see OptionName
+     * @see Option
      */
     public KeyValues getOptions() {
         return new KeyValues(Aria2.getOptionsNative(this.downloadHandleNative));

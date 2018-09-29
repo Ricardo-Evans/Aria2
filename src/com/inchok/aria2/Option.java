@@ -19,5 +19,6 @@
 
 package com.inchok.aria2;
 
-public class OptionName {
+//TODO Complete this class.
+public class Option {
 }
