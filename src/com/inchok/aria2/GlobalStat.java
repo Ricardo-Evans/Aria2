@@ -19,17 +19,18 @@
 
 package com.inchok.aria2;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * The global stat of Aria2.
+ * The global statistics of Aria2.
  * To get this stat, use Session.getGlobalStat().
  *
  * @author inCHOK
  * @version Version 1.0
  * @see Session#getGlobalStat()
  */
-public class GlobalStat {
+public class GlobalStat implements Serializable {
     private int downloadSpeed;
     private int uploadSpeed;
     private int numActive;
@@ -44,46 +45,57 @@ public class GlobalStat {
         this.numStopped = numStopped;
     }
 
+    /**
+     * To get the global download speed in bytes/sec.
+     *
+     * @return Return the global download speed in bytes/sec.
+     */
     public int getDownloadSpeed() {
         return this.downloadSpeed;
     }
 
+    /**
+     * To get the global upload speed in bytes/sec.
+     *
+     * @return Return the global upload speed in bytes/sec.
+     */
     public int getUploadSpeed() {
         return this.uploadSpeed;
     }
 
+    /**
+     * To get the count of active downloads.
+     *
+     * @return Return the count of active downloads.
+     */
     public int getActive() {
         return this.numActive;
     }
 
+    /**
+     * To get the count of waiting downloads.
+     *
+     * @return Return the count of waiting downloads.
+     */
     public int getWaiting() {
         return this.numWaiting;
     }
 
+    /**
+     * To get the count of stopped downloads.
+     *
+     * @return Return the count of stopped downloads.
+     */
     public int getStopped() {
         return this.numStopped;
     }
 
-    void setDownloadSpeed(int downloadSpeed) {
-        this.downloadSpeed = downloadSpeed;
-    }
-
-    void setUploadSpeed(int uploadSpeed) {
-        this.uploadSpeed = uploadSpeed;
-    }
-
-    void setActive(int numActive) {
-        this.numActive = numActive;
-    }
-
-    void setWaiting(int numWaiting) {
-        this.numWaiting = numWaiting;
-    }
-
-    void setStopped(int numStopped) {
-        this.numStopped = numStopped;
-    }
-
+    /**
+     * To compare whether the two GlobalStat is equal.
+     *
+     * @param o The object to be compared with.
+     * @return Return true if the two objects are equal, otherwise return false.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -91,24 +103,34 @@ public class GlobalStat {
         GlobalStat that = (GlobalStat) o;
         return getDownloadSpeed() == that.getDownloadSpeed() &&
                 getUploadSpeed() == that.getUploadSpeed() &&
-                numActive == that.numActive &&
-                numWaiting == that.numWaiting &&
-                numStopped == that.numStopped;
+                getActive() == that.getActive() &&
+                getWaiting() == that.getWaiting() &&
+                getStopped() == that.getStopped();
     }
 
+    /**
+     * To get the hash code of the GlobalStat.
+     *
+     * @return Return the hash code of the GlobalStat.
+     */
     @Override
     public int hashCode() {
-        return Objects.hash(getDownloadSpeed(), getUploadSpeed(), numActive, numWaiting, numStopped);
+        return Objects.hash(getDownloadSpeed(), getUploadSpeed(), getActive(), getWaiting(), getStopped());
     }
 
+    /**
+     * To convert the GlobalStat into a String.
+     *
+     * @return Return the String result.
+     */
     @Override
     public String toString() {
         return "GlobalStat{" +
-                "downloadSpeed=" + downloadSpeed +
-                ", uploadSpeed=" + uploadSpeed +
-                ", numActive=" + numActive +
-                ", numWaiting=" + numWaiting +
-                ", numStopped=" + numStopped +
+                "downloadSpeed=" + getDownloadSpeed() +
+                ", uploadSpeed=" + getUploadSpeed() +
+                ", numActive=" + getActive() +
+                ", numWaiting=" + getWaiting() +
+                ", numStopped=" + getStopped() +
                 '}';
     }
 }

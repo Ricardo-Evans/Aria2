@@ -20,7 +20,24 @@
 
 package com.inchok.aria2;
 
+/**
+ * The run mode used in Session.run(RunMode).
+ *
+ * @author inCHOK
+ * @version Version 1.0
+ * @see Session#run(RunMode)
+ */
 public enum RunMode {
+    /**
+     * Session.run(RunMode) returns when no downloads are left.
+     *
+     * @see Session#run(RunMode)
+     */
     DEFAULT,
+    /**
+     * Session.run(RunMode) returns after one event polling.
+     *
+     * @see Session#run(RunMode)
+     */
     ONCE
 }

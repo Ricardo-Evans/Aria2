@@ -20,7 +20,20 @@
 
 package com.inchok.aria2;
 
+/**
+ * The uri status used in UriData.
+ *
+ * @author inCHOK
+ * @version Version 1.0
+ * @see UriData#getStatus()
+ */
 public enum UriStatus {
+    /**
+     * Indicating the URI has been used.
+     */
     USED,
+    /**
+     * Indicating the URI has not been used.
+     */
     WANTED
 }

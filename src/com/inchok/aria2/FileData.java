@@ -19,6 +19,7 @@
 
 package com.inchok.aria2;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,7 +32,7 @@ import java.util.Objects;
  * @see DownloadHandle#getFilesData()
  * @see DownloadHandle#getFileData(int)
  */
-public class FileData {
+public class FileData implements Serializable {
     private int index;
     private String path;
     private long length;

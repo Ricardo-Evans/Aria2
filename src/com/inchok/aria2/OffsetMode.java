@@ -20,8 +20,24 @@
 
 package com.inchok.aria2;
 
+/**
+ * The offset mode used in Session.changePosition(Gid, int, OffsetMode).
+ *
+ * @author inCHOK
+ * @version Version 1.0
+ * @see Session#changePosition(Gid, int, OffsetMode)
+ */
 public enum OffsetMode {
+    /**
+     * Moves the download to a position relative to the beginning of the queue.
+     */
     SET,
+    /**
+     * Moves the download to a position relative to the current position.
+     */
     CUR,
+    /**
+     * Moves the download to a position relative to the end of the queue.
+     */
     END
 }

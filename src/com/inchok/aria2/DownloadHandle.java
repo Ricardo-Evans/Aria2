@@ -37,6 +37,10 @@ import java.util.Objects;
 public class DownloadHandle {
     private long downloadHandleNative;
 
+    long getDownloadHandleNative() {
+        return downloadHandleNative;
+    }
+
     DownloadHandle(long downloadHandleNative) {
         this.downloadHandleNative = downloadHandleNative;
     }
@@ -287,7 +291,7 @@ public class DownloadHandle {
         if (this == o) return true;
         if (!(o instanceof DownloadHandle)) return false;
         DownloadHandle that = (DownloadHandle) o;
-        return downloadHandleNative == that.downloadHandleNative;
+        return getDownloadHandleNative() == that.getDownloadHandleNative();
     }
 
     /**
@@ -297,7 +301,7 @@ public class DownloadHandle {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(downloadHandleNative);
+        return Objects.hash(getDownloadHandleNative());
     }
 
     /**
@@ -308,7 +312,7 @@ public class DownloadHandle {
     @Override
     public String toString() {
         return "DownloadHandle{" +
-                "downloadHandleNative=" + downloadHandleNative +
+                "downloadHandleNative=" + getDownloadHandleNative() +
                 '}';
     }
 }

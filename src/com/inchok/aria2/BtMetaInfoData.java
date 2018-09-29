@@ -19,6 +19,7 @@
 
 package com.inchok.aria2;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -31,7 +32,7 @@ import java.util.Objects;
  * @version Version 1.0
  * @see DownloadHandle#getBtMetaInfo()
  */
-public class BtMetaInfoData {
+public class BtMetaInfoData implements Serializable {
     private List<List<String>> announceList;
     private String comment;
     private Date creationDate;

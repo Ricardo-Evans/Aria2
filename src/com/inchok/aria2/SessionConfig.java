@@ -19,9 +19,10 @@
 
 package com.inchok.aria2;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class SessionConfig {
+public class SessionConfig implements Serializable {
     private boolean keepRunning = false;
     private boolean useSignalHandler = true;
     private DownloadCallback downloadCallback = null;

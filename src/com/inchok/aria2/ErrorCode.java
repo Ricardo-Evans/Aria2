@@ -29,6 +29,9 @@ package com.inchok.aria2;
  * @see DownloadHandle#getErrorCode()
  */
 public class ErrorCode {
+    private ErrorCode() {
+    }
+
     /**
      * If an unknown error occurred.
      */

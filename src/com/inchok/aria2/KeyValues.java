@@ -21,6 +21,13 @@ package com.inchok.aria2;
 
 import java.util.Objects;
 
+/**
+ * The key-value pair list.
+ * This is usually used to pass the options.
+ *
+ * @author inCHOK
+ * @version Version 1.0
+ */
 public class KeyValues {
     private long keyValuesNative;
 
@@ -32,18 +39,39 @@ public class KeyValues {
         this.keyValuesNative = keyValuesNative;
     }
 
+    /**
+     * To create a default KeyValues.
+     */
     public KeyValues() {
         this.keyValuesNative = Aria2.newKeyValuesNative();
     }
 
+    /**
+     * To set the value of the specific key.
+     *
+     * @param key   The specific key.
+     * @param value The value to be set.
+     */
     public void set(String key, String value) {
         Aria2.setKeyValuesNative(this.keyValuesNative, key, value);
     }
 
+    /**
+     * To get the value of the specific key.
+     *
+     * @param key The specific key.
+     * @return Return the value of the specific key.
+     */
     public String get(String key) {
         return Aria2.getKeyValuesNative(this.keyValuesNative, key);
     }
 
+    /**
+     * To compare whether the two KeyValues is equal.
+     *
+     * @param o The object to be compared with.
+     * @return Return true if the two objects are equal, otherwise return false.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -52,11 +80,21 @@ public class KeyValues {
         return getKeyValuesNative() == keyValues.getKeyValuesNative();
     }
 
+    /**
+     * To get the hash code of the KeyValues.
+     *
+     * @return Return the hash code of the KeyValues.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(getKeyValuesNative());
     }
 
+    /**
+     * To convert the KeyValues into a String.
+     *
+     * @return Return the String result.
+     */
     @Override
     public String toString() {
         return "KeyValues{" +
