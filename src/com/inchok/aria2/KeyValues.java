@@ -14,14 +14,11 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Contact the author by aixin1729907139@gmail.com
+ * Contact the author by inchoksteve@gmail.com
  */
 
 package com.inchok.aria2;
 
-import javafx.util.Pair;
-
-import java.util.List;
 import java.util.Objects;
 
 public class KeyValues {

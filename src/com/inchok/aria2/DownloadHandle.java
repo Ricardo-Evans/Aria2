@@ -14,7 +14,7 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Contact the author by aixin1729907139@gmail.com
+ * Contact the author by inchoksteve@gmail.com
  */
 
 package com.inchok.aria2;
@@ -277,7 +277,7 @@ public class DownloadHandle {
     }
 
     /**
-     * To compare whether two DownloadHandle is equal.
+     * To compare whether the two DownloadHandles are equal.
      *
      * @param o The object to be compared with.
      * @return Return true if the two objects are equal, otherwise return false.

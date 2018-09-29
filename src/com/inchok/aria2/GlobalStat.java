@@ -14,13 +14,21 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Contact the author by aixin1729907139@gmail.com
+ * Contact the author by inchoksteve@gmail.com
  */
 
 package com.inchok.aria2;
 
 import java.util.Objects;
 
+/**
+ * The global stat of Aria2.
+ * To get this stat, use Session.getGlobalStat().
+ *
+ * @author inCHOK
+ * @version Version 1.0
+ * @see Session#getGlobalStat()
+ */
 public class GlobalStat {
     private int downloadSpeed;
     private int uploadSpeed;
