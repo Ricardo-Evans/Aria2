@@ -90,8 +90,6 @@ public class FileData implements Serializable {
         return this.completedLength;
     }
 
-    //TODO Option.SELECT_FILE
-
     /**
      * To get whether this file is selected by <cite>select-file</cite> option.
      * If option <cite>select-file</cite> is not specified or this is single torrent or no torrent download, this value is always true.

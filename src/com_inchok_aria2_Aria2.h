@@ -9,6 +9,8 @@ extern "C" {
 #endif
 #undef com_inchok_aria2_Aria2_RESPONSE_OK
 #define com_inchok_aria2_Aria2_RESPONSE_OK 0L
+#undef com_inchok_aria2_Aria2_RESPONSE_REMAINING
+#define com_inchok_aria2_Aria2_RESPONSE_REMAINING 1L
 /*
  * Class:     com_inchok_aria2_Aria2
  * Method:    initializeNative

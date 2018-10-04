@@ -39,6 +39,7 @@ public class Aria2 {
      * The response code when any operation succeed.
      */
     public static final int RESPONSE_OK = 0;
+    public static final int RESPONSE_REMAINING = 1;
 
     private Aria2() {
     }

@@ -19,6 +19,11 @@
 
 package com.inchok.aria2;
 
-//TODO Complete this class.
+/**
+ * This is just an empty class, for option names, see <a href="https://aria2.github.io/manual/en/html/aria2c.html#input-file">Input File of Aria2</a>.
+ *
+ * @author inCHOK
+ * @version Version 1.0
+ */
 public class Option {
 }

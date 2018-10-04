@@ -47,6 +47,15 @@ public class KeyValues {
     }
 
     /**
+     * The clone constructor.
+     *
+     * @param values The ordinary KeyValues.
+     */
+    public KeyValues(KeyValues values) {
+        this.keyValuesNative = values.getKeyValuesNative();
+    }
+
+    /**
      * To set the value of the specific key.
      *
      * @param key   The specific key.

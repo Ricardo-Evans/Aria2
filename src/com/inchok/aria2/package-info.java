@@ -19,6 +19,7 @@
 
 /**
  * <h1>Aria2-A java wrapper of <a href="https://www.github.com/aria2/aria2">aria2</a></h1>
- * Contact the author by inchoksteve@gmail.com
+ * <p><a href="https://aria2.github.io/manual/en/html/libaria2.html">See the detail instruction of libaria2.</a></p>
+ * <p>Contact the author by inchoksteve@gmail.com</p>
  */
 package com.inchok.aria2;

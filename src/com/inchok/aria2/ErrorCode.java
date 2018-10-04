@@ -44,16 +44,14 @@ public class ErrorCode {
      * If a resource was not found.
      */
     public static final int RESOURCE_NOT_FOUND = 3;
-    //TODO Option.MAX_FILE_NOT_FOUND
     /**
-     * If aria2 saw the specified number of "resource not found" error.
+     * If aria2 saw the specified number of "resource not found" error.(Depends on option max-file-not-found)
      *
      * @see Option
      */
     public static final int MAX_RESOURCE_NOT_FOUND = 4;
-    //TODO Option.LOWEST_SPEED_LIMIT
     /**
-     * If a download aborted because download speed was too slow.
+     * If a download aborted because download speed was too slow.(Depends on option lowest-speed-limit)
      *
      * @see Option
      */
@@ -74,9 +72,8 @@ public class ErrorCode {
      * If there was not enough disk space available.
      */
     public static final int DISK_FULL = 9;
-    //TODO Option.ALLOW_PIECE_LENGTH_CHANGE
     /**
-     * If piece length was different from one in .aria2 control file.
+     * If piece length was different from one in .aria2 control file.(Depends on option allow-piece-length-change)
      *
      * @see Option
      */
@@ -89,16 +86,14 @@ public class ErrorCode {
      * If aria2 was downloading same info hash torrent at that moment.
      */
     public static final int DOWNLOADING_SAME_TORRENT = 12;
-    //TODO Option.ALLOW_OVERWRITING
     /**
-     * If file already existed.
+     * If file already existed.(Depends on option allow-overwriting)
      *
      * @see Option
      */
     public static final int FILE_EXISTS = 13;
-    //TODO Option.AUTO_FILE_RENAMING
     /**
-     * If renaming file failed.
+     * If renaming file failed.(Depends on option auto-file-renaming)
      *
      * @see Option
      */
