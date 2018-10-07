@@ -19,6 +19,9 @@
 
 package com.inchok.aria2;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -112,8 +115,8 @@ public class Session {
      * @see Gid
      * @see Aria2#RESPONSE_OK
      */
-    public int addUri(Gid gid, List<String> uris, KeyValues options, int position) {
-        return Aria2.addUriNative(this.sessionNative, gid.getGidNative(), uris, options.getKeyValuesNative(), position);
+    public int addUri(@Nullable Gid gid, List<String> uris, KeyValues options, int position) {
+        return Aria2.addUriNative(this.sessionNative, gid == null ? -1 : gid.getGidNative(), uris, options.getKeyValuesNative(), position);
     }
 
     /**
@@ -137,7 +140,7 @@ public class Session {
      * @see Gid
      * @see Aria2#RESPONSE_OK
      */
-    public int addMetaLink(List<Gid> gids, String metalinkFilePath, KeyValues options, int position) {
+    public int addMetaLink(@NotNull List<Gid> gids, String metalinkFilePath, KeyValues options, int position) {
         List<Long> gidsNative = new ArrayList<>();
         for (Gid gid : gids) gidsNative.add(gid.getGidNative());
         return Aria2.addMetaLinkNative(this.sessionNative, gidsNative, metalinkFilePath, options.getKeyValuesNative(), position);
@@ -158,7 +161,7 @@ public class Session {
      * @see Session#addTorrent(Gid, String, List, KeyValues, int)
      */
     public int addTorrent(Gid gid, String torrentFilePath, KeyValues options, int position) {
-        return Aria2.addTorrentNative(this.sessionNative, gid.getGidNative(), torrentFilePath, options.getKeyValuesNative(), position);
+        return Aria2.addTorrentNative(this.sessionNative, gid == null ? -1 : gid.getGidNative(), torrentFilePath, options.getKeyValuesNative(), position);
     }
 
     /**
@@ -185,7 +188,7 @@ public class Session {
      * @see Aria2#RESPONSE_OK
      */
     public int addTorrent(Gid gid, String torrentFilePath, List<String> webSeedUris, KeyValues options, int position) {
-        return Aria2.addTorrentNative(this.sessionNative, gid.getGidNative(), torrentFilePath, webSeedUris, options.getKeyValuesNative(), position);
+        return Aria2.addTorrentNative(this.sessionNative, gid == null ? -1 : gid.getGidNative(), torrentFilePath, webSeedUris, options.getKeyValuesNative(), position);
     }
 
     /**

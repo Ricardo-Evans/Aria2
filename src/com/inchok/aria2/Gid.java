@@ -24,7 +24,7 @@ import java.util.Objects;
 /**
  * The unique identifier of each download.
  * <p>In fact, gid is a 64-bits number.</p>
- * <p>To create a custom gid, use static method Gid.toGid(String).</p>
+ * <p>To create a custom gid, use static method Gid.newGid(long).</p>
  *
  * @author inCHOK
  * @version Version 1.0
@@ -35,6 +35,19 @@ public class Gid {
 
     Gid(long gidNative) {
         this.gidNative = gidNative;
+    }
+
+    /**
+     * This static method is used to create a custom made gid.
+     * If you prefer to use auto-generated gids instead of custom made gids, you just to pass <cite>null</cite> when you add a new download.
+     *
+     * @param gid The real identifier, you have the responsibility to make sure it's unique.
+     * @return The gid which is created.
+     */
+    public static Gid newGid(long gid) {
+        Gid gidNew = new Gid(Aria2.newGidNative(gid));
+        gidNew.isNewed = true;
+        return gidNew;
     }
 
     /**
@@ -125,5 +138,11 @@ public class Gid {
         return "Gid{" +
                 "gidNative=" + gidNative +
                 '}';
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        Aria2.deleteGidNative(this.getGidNative());
     }
 }
