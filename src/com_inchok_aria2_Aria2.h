@@ -93,6 +93,14 @@ JNIEXPORT jlong JNICALL Java_com_inchok_aria2_Aria2_newGidNative
 
 /*
  * Class:     com_inchok_aria2_Aria2
+ * Method:    deleteGidNative
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_com_inchok_aria2_Aria2_deleteGidNative
+  (JNIEnv *, jclass, jlong);
+
+/*
+ * Class:     com_inchok_aria2_Aria2
  * Method:    newKeyValuesNative
  * Signature: ()J
  */

@@ -86,6 +86,8 @@ public class Aria2 {
 
     static native long newGidNative(long gid);
 
+    static native void deleteGidNative(long gidNative);
+
     static native long newKeyValuesNative();
 
     static native void setKeyValuesNative(long keyValuesNative, String key, String value);

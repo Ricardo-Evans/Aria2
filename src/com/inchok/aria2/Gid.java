@@ -31,6 +31,7 @@ import java.util.Objects;
  */
 public class Gid {
     private long gidNative;
+    private boolean isNewed = false;
 
     Gid(long gidNative) {
         this.gidNative = gidNative;
@@ -44,7 +45,9 @@ public class Gid {
      * @return The gid which is created.
      */
     public static Gid newGid(long gid) {
-        return new Gid(Aria2.newGidNative(gid));
+        Gid gidNew = new Gid(Aria2.newGidNative(gid));
+        gidNew.isNewed = true;
+        return gidNew;
     }
 
     /**
@@ -135,5 +138,11 @@ public class Gid {
         return "Gid{" +
                 "gidNative=" + gidNative +
                 '}';
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        if (this.isNewed) Aria2.deleteGidNative(this.getGidNative());
     }
 }
