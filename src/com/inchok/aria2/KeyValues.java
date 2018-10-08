@@ -20,7 +20,7 @@
 package com.inchok.aria2;
 
 import java.io.Serializable;
-import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  * The key-value pair list.
@@ -29,7 +29,7 @@ import java.util.HashMap;
  * @author inCHOK
  * @version Version 1.0
  */
-public class KeyValues extends HashMap<String, String> implements Serializable {
+public class KeyValues extends ArrayList<Pair> implements Serializable {
 
     /**
      * To create a empty KeyValues.
