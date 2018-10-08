@@ -19,9 +19,6 @@
 
 package com.inchok.aria2;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -114,7 +111,7 @@ public class Session {
      * @see Gid
      * @see Aria2#RESPONSE_OK
      */
-    public int addUri(@Nullable Gid gid, List<String> uris, KeyValues options, int position) {
+    public int addUri(Gid gid, List<String> uris, KeyValues options, int position) {
         return Aria2.addUriNative(this.sessionNative, gid == null ? -1 : gid.getGid(), uris, options, position);
     }
 
@@ -139,7 +136,7 @@ public class Session {
      * @see Gid
      * @see Aria2#RESPONSE_OK
      */
-    public int addMetaLink(@NotNull List<Gid> gids, String metalinkFilePath, KeyValues options, int position) {
+    public int addMetaLink(List<Gid> gids, String metalinkFilePath, KeyValues options, int position) {
         List<Long> gidsNative = new ArrayList<>();
         for (Gid gid : gids) gidsNative.add(gid.getGid());
         return Aria2.addMetaLinkNative(this.sessionNative, gidsNative, metalinkFilePath, options, position);
