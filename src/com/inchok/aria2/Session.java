@@ -137,9 +137,13 @@ public class Session {
      * @see Aria2#RESPONSE_OK
      */
     public int addMetaLink(List<Gid> gids, String metalinkFilePath, KeyValues options, int position) {
-        List<Long> gidsNative = new ArrayList<>();
-        for (Gid gid : gids) gidsNative.add(gid.getGid());
-        return Aria2.addMetaLinkNative(this.sessionNative, gidsNative, metalinkFilePath, options, position);
+        if (gids == null) {
+            return Aria2.addMetaLinkNative(this.sessionNative, null, metalinkFilePath, options, position);
+        } else {
+            List<Long> gidsNative = new ArrayList<>();
+            for (Gid gid : gids) gidsNative.add(gid.getGid());
+            return Aria2.addMetaLinkNative(this.sessionNative, gidsNative, metalinkFilePath, options, position);
+        }
     }
 
     /**
