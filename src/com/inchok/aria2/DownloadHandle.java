@@ -171,7 +171,7 @@ public class DownloadHandle {
      */
     public List<Gid> getFollowedBy() {
         List<Gid> gids = new ArrayList<>();
-        for (long gidNative : Aria2.getFollowedByNative(this.downloadHandleNative)) gids.add(new Gid(gidNative));
+        for (long gid : Aria2.getFollowedByNative(this.downloadHandleNative)) gids.add(new Gid(gid));
         return gids;
     }
 
@@ -268,7 +268,7 @@ public class DownloadHandle {
      * @see Option
      */
     public KeyValues getOptions() {
-        return new KeyValues(Aria2.getOptionsNative(this.downloadHandleNative));
+        return Aria2.getOptionsNative(this.downloadHandleNative);
     }
 
     /**

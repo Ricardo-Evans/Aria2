@@ -70,29 +70,15 @@ public class Aria2 {
 
     private static native int deInitializeNative();
 
-    static native long newSessionNative(long keyValuesNative, SessionConfig sessionConfig);
+    static native long newSessionNative(KeyValues options, SessionConfig sessionConfig);
 
     static native int finalSessionNative(long sessionNative);
 
     static native long hexToGidNative(String hexGid);
 
-    static native String gidToHexNative(long gidNative);
+    static native String gidToHexNative(long gid);
 
-    static native boolean isNullNative(long gidNative);
-
-    static native long getGidNative(long gidNative);
-
-    static native void setGidNative(long gidNative, long gid);
-
-    static native long newGidNative(long gid);
-
-    static native void deleteGidNative(long gidNative);
-
-    static native long newKeyValuesNative();
-
-    static native void setKeyValuesNative(long keyValuesNative, String key, String value);
-
-    static native String getKeyValuesNative(long keyValuesNative, String key);
+    static native boolean isNullNative(long gid);
 
     static native DownloadStatus getStatusNative(long downloadHandleNative);
 
@@ -136,41 +122,41 @@ public class Aria2 {
 
     static native String getOptionNative(long downloadHandleNative, String name);
 
-    static native long getOptionsNative(long downloadHandleNative);
+    static native KeyValues getOptionsNative(long downloadHandleNative);
 
     static native void deleteDownloadHandleNative(long downloadHandleNative);
 
     static native int runNative(long sessionNative, int runMode);
 
-    static native int addUriNative(long sessionNative, long gidNative, List<String> uris, long optionsNative, int position);
+    static native int addUriNative(long sessionNative, long gid, List<String> uris, KeyValues options, int position);
 
-    static native int addMetaLinkNative(long sessionNative, List<Long> gidsNative, String metaLinkFilePath, long optionsNative, int position);
+    static native int addMetaLinkNative(long sessionNative, List<Long> gidsNative, String metaLinkFilePath, KeyValues options, int position);
 
-    static native int addTorrentNative(long sessionNative, long gidNative, String torrentFilePath, long optionsNative, int position);
+    static native int addTorrentNative(long sessionNative, long gid, String torrentFilePath, KeyValues options, int position);
 
-    static native int addTorrentNative(long sessionNative, long gidNative, String torrentFilePath, List<String> webSeedUris, long optionsNative, int position);
+    static native int addTorrentNative(long sessionNative, long gid, String torrentFilePath, List<String> webSeedUris, KeyValues options, int position);
 
     static native List<Long> getActiveDownloadNative(long sessionNative);
 
-    static native int removeDownloadNative(long sessionNative, long gidNative, boolean force);
+    static native int removeDownloadNative(long sessionNative, long gid, boolean force);
 
-    static native int pauseDownloadNative(long sessionNative, long gidNative, boolean force);
+    static native int pauseDownloadNative(long sessionNative, long gid, boolean force);
 
-    static native int unpauseDownloadNative(long sessionNative, long gidNative);
+    static native int unpauseDownloadNative(long sessionNative, long gid);
 
-    static native int changeOptionNative(long sessionNative, long gidNative, long optionsNative);
+    static native int changeOptionNative(long sessionNative, long gid, KeyValues options);
 
     static native String getGlobalOptionNative(long sessionNative, String name);
 
-    static native long getGlobalOptionsNative(long sessionNative);
+    static native KeyValues getGlobalOptionsNative(long sessionNative);
 
-    static native int changeGlobalOptionNative(long sessionNative, long optionsNative);
+    static native int changeGlobalOptionNative(long sessionNative, KeyValues options);
 
     static native GlobalStat getGlobalStatNative(long sessionNative);
 
-    static native int changePositionNative(long sessionNative, long gidNative, int pos, int mode);
+    static native int changePositionNative(long sessionNative, long gid, int pos, int mode);
 
     static native int shutdownNative(long sessionNative, boolean force);
 
-    static native long getDownloadHandleNative(long sessionNative, long gidNative);
+    static native long getDownloadHandleNative(long sessionNative, long gid);
 }

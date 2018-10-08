@@ -35,5 +35,5 @@ public enum UriStatus {
     /**
      * Indicating the URI has not been used.
      */
-    WANTED
+    WAITING
 }

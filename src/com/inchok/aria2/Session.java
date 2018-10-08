@@ -61,7 +61,7 @@ public class Session {
      */
     public static Session newSession(final KeyValues options, SessionConfig config) {
         if (Session.session == null)
-            Session.session = new Session(Aria2.newSessionNative(options.getKeyValuesNative(), config));
+            Session.session = new Session(Aria2.newSessionNative(options, config));
         return Session.session;
     }
 
@@ -116,7 +116,7 @@ public class Session {
      * @see Aria2#RESPONSE_OK
      */
     public int addUri(@Nullable Gid gid, List<String> uris, KeyValues options, int position) {
-        return Aria2.addUriNative(this.sessionNative, gid == null ? -1 : gid.getGidNative(), uris, options.getKeyValuesNative(), position);
+        return Aria2.addUriNative(this.sessionNative, gid == null ? -1 : gid.getGid(), uris, options, position);
     }
 
     /**
@@ -142,8 +142,8 @@ public class Session {
      */
     public int addMetaLink(@NotNull List<Gid> gids, String metalinkFilePath, KeyValues options, int position) {
         List<Long> gidsNative = new ArrayList<>();
-        for (Gid gid : gids) gidsNative.add(gid.getGidNative());
-        return Aria2.addMetaLinkNative(this.sessionNative, gidsNative, metalinkFilePath, options.getKeyValuesNative(), position);
+        for (Gid gid : gids) gidsNative.add(gid.getGid());
+        return Aria2.addMetaLinkNative(this.sessionNative, gidsNative, metalinkFilePath, options, position);
     }
 
     /**
@@ -161,7 +161,7 @@ public class Session {
      * @see Session#addTorrent(Gid, String, List, KeyValues, int)
      */
     public int addTorrent(Gid gid, String torrentFilePath, KeyValues options, int position) {
-        return Aria2.addTorrentNative(this.sessionNative, gid == null ? -1 : gid.getGidNative(), torrentFilePath, options.getKeyValuesNative(), position);
+        return Aria2.addTorrentNative(this.sessionNative, gid == null ? -1 : gid.getGid(), torrentFilePath, options, position);
     }
 
     /**
@@ -188,7 +188,7 @@ public class Session {
      * @see Aria2#RESPONSE_OK
      */
     public int addTorrent(Gid gid, String torrentFilePath, List<String> webSeedUris, KeyValues options, int position) {
-        return Aria2.addTorrentNative(this.sessionNative, gid == null ? -1 : gid.getGidNative(), torrentFilePath, webSeedUris, options.getKeyValuesNative(), position);
+        return Aria2.addTorrentNative(this.sessionNative, gid == null ? -1 : gid.getGid(), torrentFilePath, webSeedUris, options, position);
     }
 
     /**
@@ -224,7 +224,7 @@ public class Session {
      * @see Aria2#RESPONSE_OK
      */
     public int removeDownload(Gid gid, boolean force) {
-        return Aria2.removeDownloadNative(this.sessionNative, gid.getGidNative(), force);
+        return Aria2.removeDownloadNative(this.sessionNative, gid.getGid(), force);
     }
 
     /**
@@ -251,7 +251,7 @@ public class Session {
      * @see Aria2#RESPONSE_OK
      */
     public int pauseDownload(Gid gid, boolean force) {
-        return Aria2.pauseDownloadNative(this.sessionNative, gid.getGidNative(), force);
+        return Aria2.pauseDownloadNative(this.sessionNative, gid.getGid(), force);
     }
 
     /**
@@ -265,7 +265,7 @@ public class Session {
      * @see Aria2#RESPONSE_OK
      */
     public int unpauseDownload(Gid gid) {
-        return Aria2.unpauseDownloadNative(this.sessionNative, gid.getGidNative());
+        return Aria2.unpauseDownloadNative(this.sessionNative, gid.getGid());
     }
 
     /**
@@ -283,7 +283,7 @@ public class Session {
      * @see Aria2#RESPONSE_OK
      */
     public int changeOption(Gid gid, KeyValues options) {
-        return Aria2.changeOptionNative(this.sessionNative, gid.getGidNative(), options.getKeyValuesNative());
+        return Aria2.changeOptionNative(this.sessionNative, gid.getGid(), options);
     }
 
     /**
@@ -306,7 +306,7 @@ public class Session {
      * @see Option
      */
     public KeyValues getGlobalOptions() {
-        return new KeyValues(Aria2.getGlobalOptionsNative(this.sessionNative));
+        return Aria2.getGlobalOptionsNative(this.sessionNative);
     }
 
     /**
@@ -321,7 +321,7 @@ public class Session {
      * @see Aria2#RESPONSE_OK
      */
     public int changeGlobalOption(KeyValues options) {
-        return Aria2.changeGlobalOptionNative(this.sessionNative, options.getKeyValuesNative());
+        return Aria2.changeGlobalOptionNative(this.sessionNative, options);
     }
 
     /**
@@ -347,7 +347,7 @@ public class Session {
      * @see OffsetMode
      */
     public int changePosition(Gid gid, int pos, OffsetMode mode) {
-        return Aria2.changePositionNative(this.sessionNative, gid.getGidNative(), pos, mode.ordinal());
+        return Aria2.changePositionNative(this.sessionNative, gid.getGid(), pos, mode.ordinal());
     }
 
     /**
@@ -383,7 +383,7 @@ public class Session {
      * @see DownloadHandle#delete()
      */
     public DownloadHandle getDownloadHandle(Gid gid) {
-        return new DownloadHandle(Aria2.getDownloadHandleNative(this.sessionNative, gid.getGidNative()));
+        return new DownloadHandle(Aria2.getDownloadHandleNative(this.sessionNative, gid.getGid()));
     }
 
     /**

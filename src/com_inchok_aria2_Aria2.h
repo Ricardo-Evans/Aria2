@@ -30,10 +30,10 @@ JNIEXPORT jint JNICALL Java_com_inchok_aria2_Aria2_deInitializeNative
 /*
  * Class:     com_inchok_aria2_Aria2
  * Method:    newSessionNative
- * Signature: (JLcom/inchok/aria2/SessionConfig;)J
+ * Signature: (Lcom/inchok/aria2/KeyValues;Lcom/inchok/aria2/SessionConfig;)J
  */
 JNIEXPORT jlong JNICALL Java_com_inchok_aria2_Aria2_newSessionNative
-  (JNIEnv *, jclass, jlong, jobject);
+  (JNIEnv *, jclass, jobject, jobject);
 
 /*
  * Class:     com_inchok_aria2_Aria2
@@ -66,62 +66,6 @@ JNIEXPORT jstring JNICALL Java_com_inchok_aria2_Aria2_gidToHexNative
  */
 JNIEXPORT jboolean JNICALL Java_com_inchok_aria2_Aria2_isNullNative
   (JNIEnv *, jclass, jlong);
-
-/*
- * Class:     com_inchok_aria2_Aria2
- * Method:    getGidNative
- * Signature: (J)J
- */
-JNIEXPORT jlong JNICALL Java_com_inchok_aria2_Aria2_getGidNative
-  (JNIEnv *, jclass, jlong);
-
-/*
- * Class:     com_inchok_aria2_Aria2
- * Method:    setGidNative
- * Signature: (JJ)V
- */
-JNIEXPORT void JNICALL Java_com_inchok_aria2_Aria2_setGidNative
-  (JNIEnv *, jclass, jlong, jlong);
-
-/*
- * Class:     com_inchok_aria2_Aria2
- * Method:    newGidNative
- * Signature: (J)J
- */
-JNIEXPORT jlong JNICALL Java_com_inchok_aria2_Aria2_newGidNative
-  (JNIEnv *, jclass, jlong);
-
-/*
- * Class:     com_inchok_aria2_Aria2
- * Method:    deleteGidNative
- * Signature: (J)V
- */
-JNIEXPORT void JNICALL Java_com_inchok_aria2_Aria2_deleteGidNative
-  (JNIEnv *, jclass, jlong);
-
-/*
- * Class:     com_inchok_aria2_Aria2
- * Method:    newKeyValuesNative
- * Signature: ()J
- */
-JNIEXPORT jlong JNICALL Java_com_inchok_aria2_Aria2_newKeyValuesNative
-  (JNIEnv *, jclass);
-
-/*
- * Class:     com_inchok_aria2_Aria2
- * Method:    setKeyValuesNative
- * Signature: (JLjava/lang/String;Ljava/lang/String;)V
- */
-JNIEXPORT void JNICALL Java_com_inchok_aria2_Aria2_setKeyValuesNative
-  (JNIEnv *, jclass, jlong, jstring, jstring);
-
-/*
- * Class:     com_inchok_aria2_Aria2
- * Method:    getKeyValuesNative
- * Signature: (JLjava/lang/String;)Ljava/lang/String;
- */
-JNIEXPORT jstring JNICALL Java_com_inchok_aria2_Aria2_getKeyValuesNative
-  (JNIEnv *, jclass, jlong, jstring);
 
 /*
  * Class:     com_inchok_aria2_Aria2
@@ -294,9 +238,9 @@ JNIEXPORT jstring JNICALL Java_com_inchok_aria2_Aria2_getOptionNative
 /*
  * Class:     com_inchok_aria2_Aria2
  * Method:    getOptionsNative
- * Signature: (J)J
+ * Signature: (J)Lcom/inchok/aria2/KeyValues;
  */
-JNIEXPORT jlong JNICALL Java_com_inchok_aria2_Aria2_getOptionsNative
+JNIEXPORT jobject JNICALL Java_com_inchok_aria2_Aria2_getOptionsNative
   (JNIEnv *, jclass, jlong);
 
 /*
@@ -318,34 +262,34 @@ JNIEXPORT jint JNICALL Java_com_inchok_aria2_Aria2_runNative
 /*
  * Class:     com_inchok_aria2_Aria2
  * Method:    addUriNative
- * Signature: (JJLjava/util/List;JI)I
+ * Signature: (JJLjava/util/List;Lcom/inchok/aria2/KeyValues;I)I
  */
 JNIEXPORT jint JNICALL Java_com_inchok_aria2_Aria2_addUriNative
-  (JNIEnv *, jclass, jlong, jlong, jobject, jlong, jint);
+  (JNIEnv *, jclass, jlong, jlong, jobject, jobject, jint);
 
 /*
  * Class:     com_inchok_aria2_Aria2
  * Method:    addMetaLinkNative
- * Signature: (JLjava/util/List;Ljava/lang/String;JI)I
+ * Signature: (JLjava/util/List;Ljava/lang/String;Lcom/inchok/aria2/KeyValues;I)I
  */
 JNIEXPORT jint JNICALL Java_com_inchok_aria2_Aria2_addMetaLinkNative
-  (JNIEnv *, jclass, jlong, jobject, jstring, jlong, jint);
+  (JNIEnv *, jclass, jlong, jobject, jstring, jobject, jint);
 
 /*
  * Class:     com_inchok_aria2_Aria2
  * Method:    addTorrentNative
- * Signature: (JJLjava/lang/String;JI)I
+ * Signature: (JJLjava/lang/String;Lcom/inchok/aria2/KeyValues;I)I
  */
-JNIEXPORT jint JNICALL Java_com_inchok_aria2_Aria2_addTorrentNative__JJLjava_lang_String_2JI
-  (JNIEnv *, jclass, jlong, jlong, jstring, jlong, jint);
+JNIEXPORT jint JNICALL Java_com_inchok_aria2_Aria2_addTorrentNative__JJLjava_lang_String_2Lcom_inchok_aria2_KeyValues_2I
+  (JNIEnv *, jclass, jlong, jlong, jstring, jobject, jint);
 
 /*
  * Class:     com_inchok_aria2_Aria2
  * Method:    addTorrentNative
- * Signature: (JJLjava/lang/String;Ljava/util/List;JI)I
+ * Signature: (JJLjava/lang/String;Ljava/util/List;Lcom/inchok/aria2/KeyValues;I)I
  */
-JNIEXPORT jint JNICALL Java_com_inchok_aria2_Aria2_addTorrentNative__JJLjava_lang_String_2Ljava_util_List_2JI
-  (JNIEnv *, jclass, jlong, jlong, jstring, jobject, jlong, jint);
+JNIEXPORT jint JNICALL Java_com_inchok_aria2_Aria2_addTorrentNative__JJLjava_lang_String_2Ljava_util_List_2Lcom_inchok_aria2_KeyValues_2I
+  (JNIEnv *, jclass, jlong, jlong, jstring, jobject, jobject, jint);
 
 /*
  * Class:     com_inchok_aria2_Aria2
@@ -382,10 +326,10 @@ JNIEXPORT jint JNICALL Java_com_inchok_aria2_Aria2_unpauseDownloadNative
 /*
  * Class:     com_inchok_aria2_Aria2
  * Method:    changeOptionNative
- * Signature: (JJJ)I
+ * Signature: (JJLcom/inchok/aria2/KeyValues;)I
  */
 JNIEXPORT jint JNICALL Java_com_inchok_aria2_Aria2_changeOptionNative
-  (JNIEnv *, jclass, jlong, jlong, jlong);
+  (JNIEnv *, jclass, jlong, jlong, jobject);
 
 /*
  * Class:     com_inchok_aria2_Aria2
@@ -398,18 +342,18 @@ JNIEXPORT jstring JNICALL Java_com_inchok_aria2_Aria2_getGlobalOptionNative
 /*
  * Class:     com_inchok_aria2_Aria2
  * Method:    getGlobalOptionsNative
- * Signature: (J)J
+ * Signature: (J)Lcom/inchok/aria2/KeyValues;
  */
-JNIEXPORT jlong JNICALL Java_com_inchok_aria2_Aria2_getGlobalOptionsNative
+JNIEXPORT jobject JNICALL Java_com_inchok_aria2_Aria2_getGlobalOptionsNative
   (JNIEnv *, jclass, jlong);
 
 /*
  * Class:     com_inchok_aria2_Aria2
  * Method:    changeGlobalOptionNative
- * Signature: (JJ)I
+ * Signature: (JLcom/inchok/aria2/KeyValues;)I
  */
 JNIEXPORT jint JNICALL Java_com_inchok_aria2_Aria2_changeGlobalOptionNative
-  (JNIEnv *, jclass, jlong, jlong);
+  (JNIEnv *, jclass, jlong, jobject);
 
 /*
  * Class:     com_inchok_aria2_Aria2

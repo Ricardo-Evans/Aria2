@@ -19,35 +19,27 @@
 
 package com.inchok.aria2;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * The unique identifier of each download.
- * <p>In fact, gid is a 64-bits number.</p>
- * <p>To create a custom gid, use static method Gid.newGid(long).</p>
+ * In fact, gid is a 64-bits number.
  *
  * @author inCHOK
  * @version Version 1.0
  */
-public class Gid {
-    private long gidNative;
-    private boolean isNewed = false;
-
-    Gid(long gidNative) {
-        this.gidNative = gidNative;
-    }
+public class Gid implements Serializable {
+    private long gid;
 
     /**
-     * This static method is used to create a custom made gid.
+     * This constructor to create a custom made gid.
      * If you prefer to use auto-generated gids instead of custom made gids, you just to pass <cite>null</cite> when you add a new download.
      *
      * @param gid The real identifier, you have the responsibility to make sure it's unique.
-     * @return The gid which is created.
      */
-    public static Gid newGid(long gid) {
-        Gid gidNew = new Gid(Aria2.newGidNative(gid));
-        gidNew.isNewed = true;
-        return gidNew;
+    public Gid(long gid) {
+        this.gid = gid;
     }
 
     /**
@@ -56,7 +48,7 @@ public class Gid {
      * @return Return textual representation hex of the gid.
      */
     public String toHex() {
-        return Aria2.gidToHexNative(this.gidNative);
+        return Aria2.gidToHexNative(this.gid);
     }
 
     /**
@@ -75,15 +67,7 @@ public class Gid {
      * @return Return whether this gid is invalid.
      */
     public boolean isNull() {
-        return Aria2.isNullNative(this.gidNative);
-    }
-
-    long getGidNative() {
-        return this.gidNative;
-    }
-
-    void setGidNative(long gidNative) {
-        this.gidNative = gidNative;
+        return Aria2.isNullNative(this.gid);
     }
 
     /**
@@ -92,16 +76,7 @@ public class Gid {
      * @return Return the real gid(A 64-bit number).
      */
     public long getGid() {
-        return Aria2.getGidNative(this.gidNative);
-    }
-
-    /**
-     * To set the real gid(A 64-bit number).
-     *
-     * @param gid The real gid(A 64-bit number).
-     */
-    public void setGid(long gid) {
-        Aria2.setGidNative(this.gidNative, gid);
+        return this.gid;
     }
 
     /**
@@ -115,7 +90,7 @@ public class Gid {
         if (this == o) return true;
         if (!(o instanceof Gid)) return false;
         Gid gid = (Gid) o;
-        return getGidNative() == gid.getGidNative();
+        return getGid() == gid.getGid();
     }
 
     /**
@@ -125,7 +100,7 @@ public class Gid {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(getGidNative());
+        return Objects.hash(this.getGid());
     }
 
     /**
@@ -136,13 +111,7 @@ public class Gid {
     @Override
     public String toString() {
         return "Gid{" +
-                "gidNative=" + gidNative +
+                "gid=" + this.getGid() +
                 '}';
-    }
-
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-        Aria2.deleteGidNative(this.getGidNative());
     }
 }
