@@ -28,14 +28,14 @@ import java.util.Objects;
 
 /**
  * The session of Aria2, you need this object through out the download process.
- * <p>To create a new session, use Session.newSession(KeyValues, SessionConfig), and when all the tasks you want Aria2 to do are finished, don't forget to call Session.finalSession() to release all the resources.</p>
- * <p>Notice that it's suggested to create <strong>only one</strong> Session per process due to the heavy use of static resources. If there is already a Session(Exists after you call Session.newSession(KeyValues, SessionConfig) and before the next call of Session.finalSession().), it will return it without change the global options and SessionConfig.</p>
+ * <p>To create a new session, use constructor Session(KeyValues, SessionConfig), and when all the tasks you want Aria2 to do are finished, don't forget to call Session.close() to release all the resources.</p>
+ * <p>Notice that it's suggested to create <strong>only one</strong> Session per process due to the heavy use of static resources. If there is already a Session(Exists after you call Session.Session(KeyValues, SessionConfig) and before the next call of Session.close().), it will return it without change the global options and SessionConfig.</p>
  * <p>Session is not safe for concurrent accesses from multiple threads, </p>
  *
  * @author inCHOK
  * @version Version 1.0
- * @see Session#newSession(KeyValues, SessionConfig)
- * @see Session#finalSession()
+ * @see Session#Session(KeyValues, SessionConfig)
+ * @see Session#close()
  */
 public class Session {
     private long sessionNative;
@@ -50,19 +50,18 @@ public class Session {
     }
 
     /**
-     * The static method to create a new Session.
-     * Don't forget to call Session.finalSession() after all the tasks of Aria2 are done. There will be no more than one Session exists per process.
+     * The constructor to create a new Session.
+     * Don't forget to call Session.close() after all the tasks of Aria2 are done. There will be no more than one Session exists per process.
      *
      * @param options The global options of this new Session.
      * @param config  The SessionConfig of this new Session.
-     * @return Return the new Session.
      * @see SessionConfig
-     * @see Session#finalSession()
+     * @see Session#close()
      */
-    public static Session newSession(final KeyValues options, SessionConfig config) {
-        if (Session.session == null)
-            Session.session = new Session(Aria2.newSessionNative(options, config));
-        return Session.session;
+    public Session(KeyValues options, SessionConfig config) {
+        if (Session.session == null) this.sessionNative = Aria2.newSessionNative(options, config);
+        else this.sessionNative = Session.session.getSessionNative();
+        Session.session = this;
     }
 
     /**
@@ -73,7 +72,7 @@ public class Session {
      * @see Aria2#RESPONSE_OK
      * @see ErrorCode
      */
-    public int finalSession() {
+    public int close() {
         if (Session.session != null) Session.session = null;
         return Aria2.finalSessionNative(this.sessionNative);
     }
@@ -299,10 +298,10 @@ public class Session {
 
     /**
      * To get the global options.
-     * Note that this method does not return options which have no default value and have not been set by Session.newSession(KeyValues, SessionConfig), configuration files or API functions.
+     * Note that this method does not return options which have no default value and have not been set by Session.Session(KeyValues, SessionConfig), configuration files or API functions.
      *
      * @return Return the global options.
-     * @see Session#newSession(KeyValues, SessionConfig)
+     * @see Session#Session(KeyValues, SessionConfig)
      * @see Option
      */
     public KeyValues getGlobalOptions() {
@@ -373,13 +372,13 @@ public class Session {
 
     /**
      * To get the handle for the download denoted by the gid.
-     * The caller can retrieve various information of the download via returned handle's member methods. The lifetime of the returned handle is before the next call of Session.run(RunMode) or Session.finalSession(). The caller must call DownloadHandle.delete() before that. This function returns null if no download denoted by the gid is present. It is the responsibility of the caller to call DownloadHandle.delete() to delete handle object.
+     * The caller can retrieve various information of the download via returned handle's member methods. The lifetime of the returned handle is before the next call of Session.run(RunMode) or Session.close(). The caller must call DownloadHandle.delete() before that. This function returns null if no download denoted by the gid is present. It is the responsibility of the caller to call DownloadHandle.delete() to delete handle object.
      *
      * @param gid The gid of the download you want to get the download handle.
      * @return Return the handle for the download denoted by the gid.
      * @see DownloadHandle
      * @see Session#run(RunMode)
-     * @see Session#finalSession()
+     * @see Session#close()
      * @see DownloadHandle#delete()
      */
     public DownloadHandle getDownloadHandle(Gid gid) {
