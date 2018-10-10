@@ -19,6 +19,7 @@
 
 package com.inchok.aria2;
 
+
 import java.util.List;
 
 /**
@@ -130,7 +131,7 @@ public class Aria2 {
 
     static native int addUriNative(long sessionNative, long gid, List<String> uris, KeyValues options, int position);
 
-    static native int addMetaLinkNative(long sessionNative, List<Long> gidsNative, String metaLinkFilePath, KeyValues options, int position);
+    static native int addMetaLinkNative(long sessionNative, List<Long> gids, String metaLinkFilePath, KeyValues options, int position);
 
     static native int addTorrentNative(long sessionNative, long gid, String torrentFilePath, KeyValues options, int position);
 
