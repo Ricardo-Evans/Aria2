@@ -391,7 +391,7 @@ public class Session {
      *
      * @return Return the existing session.
      */
-    public Session getSession() {
+    public static Session getSession() {
         return Session.session;
     }
 
