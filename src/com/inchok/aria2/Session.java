@@ -387,6 +387,15 @@ public class Session {
     }
 
     /**
+     * To get the existing session.
+     *
+     * @return Return the existing session.
+     */
+    public Session getSession() {
+        return Session.session;
+    }
+
+    /**
      * To compare whether the two Sessions are equal.
      *
      * @param o The object to be compared with.

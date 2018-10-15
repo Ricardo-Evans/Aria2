@@ -35,193 +35,194 @@
 <span class="sourceLineNo">019</span><a name="line.19"></a>
 <span class="sourceLineNo">020</span>package com.inchok.aria2;<a name="line.20"></a>
 <span class="sourceLineNo">021</span><a name="line.21"></a>
-<span class="sourceLineNo">022</span>import java.util.List;<a name="line.22"></a>
-<span class="sourceLineNo">023</span><a name="line.23"></a>
-<span class="sourceLineNo">024</span>/**<a name="line.24"></a>
-<span class="sourceLineNo">025</span> * The static class which operates the global operations.<a name="line.25"></a>
-<span class="sourceLineNo">026</span> * Before you do anything with Aria2, you must call Aria2.initialize() first to initialize. After you finish your task, you need to call Aria2.deInitialize() to release the static global resources.<a
-            name="line.26"></a>
-<span class="sourceLineNo">027</span> *<a name="line.27"></a>
-<span class="sourceLineNo">028</span> * @author inCHOK<a name="line.28"></a>
-<span class="sourceLineNo">029</span> * @version Version 1.0<a name="line.29"></a>
-<span class="sourceLineNo">030</span> * @see Aria2#initialize()<a name="line.30"></a>
-<span class="sourceLineNo">031</span> * @see Aria2#deInitialize()<a name="line.31"></a>
-<span class="sourceLineNo">032</span> */<a name="line.32"></a>
-<span class="sourceLineNo">033</span>public class Aria2 {<a name="line.33"></a>
-<span class="sourceLineNo">034</span>    static {<a name="line.34"></a>
-<span class="sourceLineNo">035</span>        System.loadLibrary("aria2-native");<a name="line.35"></a>
-<span class="sourceLineNo">036</span>    }<a name="line.36"></a>
-<span class="sourceLineNo">037</span><a name="line.37"></a>
-<span class="sourceLineNo">038</span>    /**<a name="line.38"></a>
-<span class="sourceLineNo">039</span>     * The response code when any operation succeed.<a name="line.39"></a>
-<span class="sourceLineNo">040</span>     */<a name="line.40"></a>
-<span class="sourceLineNo">041</span>    public static final int RESPONSE_OK = 0;<a name="line.41"></a>
-<span class="sourceLineNo">042</span>    public static final int RESPONSE_REMAINING = 1;<a name="line.42"></a>
-<span class="sourceLineNo">043</span><a name="line.43"></a>
-<span class="sourceLineNo">044</span>    private Aria2() {<a name="line.44"></a>
-<span class="sourceLineNo">045</span>    }<a name="line.45"></a>
-<span class="sourceLineNo">046</span><a name="line.46"></a>
-<span class="sourceLineNo">047</span>    /**<a name="line.47"></a>
-<span class="sourceLineNo">048</span>     * Initialize the global data.<a name="line.48"></a>
-<span class="sourceLineNo">049</span>     * Call this static method &lt;strong&gt;only once&lt;/strong&gt; before any other operations of Aria2.<a
-            name="line.49"></a>
-<span class="sourceLineNo">050</span>     *<a name="line.50"></a>
-<span class="sourceLineNo">051</span>     * @return Return Aria2.RESPONSE_OK if succeed, or any other negative error code.<a
-            name="line.51"></a>
-<span class="sourceLineNo">052</span>     * @see Aria2#RESPONSE_OK<a name="line.52"></a>
-<span class="sourceLineNo">053</span>     */<a name="line.53"></a>
-<span class="sourceLineNo">054</span>    public static int initialize() {<a name="line.54"></a>
-<span class="sourceLineNo">055</span>        return Aria2.initializeNative();<a name="line.55"></a>
-<span class="sourceLineNo">056</span>    }<a name="line.56"></a>
-<span class="sourceLineNo">057</span><a name="line.57"></a>
-<span class="sourceLineNo">058</span>    /**<a name="line.58"></a>
-<span class="sourceLineNo">059</span>     * Release all the global data.<a name="line.59"></a>
-<span class="sourceLineNo">060</span>     * Call this static method &lt;strong&gt;only once&lt;/strong&gt; after all the tasks of Aria2 are finished.<a
-            name="line.60"></a>
-<span class="sourceLineNo">061</span>     *<a name="line.61"></a>
-<span class="sourceLineNo">062</span>     * @return Return Aria2.RESPONSE_OK if succeed, or any other negative error code.<a
-            name="line.62"></a>
-<span class="sourceLineNo">063</span>     * @see Aria2#RESPONSE_OK<a name="line.63"></a>
-<span class="sourceLineNo">064</span>     */<a name="line.64"></a>
-<span class="sourceLineNo">065</span>    public static int deInitialize() {<a name="line.65"></a>
-<span class="sourceLineNo">066</span>        return Aria2.deInitializeNative();<a name="line.66"></a>
-<span class="sourceLineNo">067</span>    }<a name="line.67"></a>
-<span class="sourceLineNo">068</span><a name="line.68"></a>
-<span class="sourceLineNo">069</span>    private static native int initializeNative();<a name="line.69"></a>
-<span class="sourceLineNo">070</span><a name="line.70"></a>
-<span class="sourceLineNo">071</span>    private static native int deInitializeNative();<a name="line.71"></a>
-<span class="sourceLineNo">072</span><a name="line.72"></a>
-<span class="sourceLineNo">073</span>    static native long newSessionNative(KeyValues options, SessionConfig sessionConfig);<a
-            name="line.73"></a>
-<span class="sourceLineNo">074</span><a name="line.74"></a>
-<span class="sourceLineNo">075</span>    static native int finalSessionNative(long sessionNative);<a name="line.75"></a>
-<span class="sourceLineNo">076</span><a name="line.76"></a>
-<span class="sourceLineNo">077</span>    static native long hexToGidNative(String hexGid);<a name="line.77"></a>
-<span class="sourceLineNo">078</span><a name="line.78"></a>
-<span class="sourceLineNo">079</span>    static native String gidToHexNative(long gid);<a name="line.79"></a>
-<span class="sourceLineNo">080</span><a name="line.80"></a>
-<span class="sourceLineNo">081</span>    static native boolean isNullNative(long gid);<a name="line.81"></a>
-<span class="sourceLineNo">082</span><a name="line.82"></a>
-<span class="sourceLineNo">083</span>    static native DownloadStatus getStatusNative(long downloadHandleNative);<a
-            name="line.83"></a>
-<span class="sourceLineNo">084</span><a name="line.84"></a>
-<span class="sourceLineNo">085</span>    static native long getTotalLengthNative(long downloadHandleNative);<a
-            name="line.85"></a>
-<span class="sourceLineNo">086</span><a name="line.86"></a>
-<span class="sourceLineNo">087</span>    static native long getCompletedLengthNative(long downloadHandleNative);<a
-            name="line.87"></a>
-<span class="sourceLineNo">088</span><a name="line.88"></a>
-<span class="sourceLineNo">089</span>    static native long getUploadedLengthNative(long downloadHandleNative);<a
-            name="line.89"></a>
-<span class="sourceLineNo">090</span><a name="line.90"></a>
-<span class="sourceLineNo">091</span>    static native String getBitFieldNative(long downloadHandleNative);<a
-            name="line.91"></a>
-<span class="sourceLineNo">092</span><a name="line.92"></a>
-<span class="sourceLineNo">093</span>    static native int getDownloadSpeedNative(long downloadHandleNative);<a
-            name="line.93"></a>
-<span class="sourceLineNo">094</span><a name="line.94"></a>
-<span class="sourceLineNo">095</span>    static native int getUploadSpeedNative(long downloadHandleNative);<a
-            name="line.95"></a>
-<span class="sourceLineNo">096</span><a name="line.96"></a>
-<span class="sourceLineNo">097</span>    static native String getInfoHashNative(long downloadHandleNative);<a
-            name="line.97"></a>
-<span class="sourceLineNo">098</span><a name="line.98"></a>
-<span class="sourceLineNo">099</span>    static native long getPieceLengthNative(long downloadHandleNative);<a
-            name="line.99"></a>
-<span class="sourceLineNo">100</span><a name="line.100"></a>
-<span class="sourceLineNo">101</span>    static native int getPieceCountNative(long downloadHandleNative);<a
-            name="line.101"></a>
-<span class="sourceLineNo">102</span><a name="line.102"></a>
-<span class="sourceLineNo">103</span>    static native int getConnectionCountNative(long downloadHandleNative);<a
-            name="line.103"></a>
-<span class="sourceLineNo">104</span><a name="line.104"></a>
-<span class="sourceLineNo">105</span>    static native int getErrorCodeNative(long downloadHandleNative);<a
-            name="line.105"></a>
-<span class="sourceLineNo">106</span><a name="line.106"></a>
-<span class="sourceLineNo">107</span>    static native List&lt;Long&gt; getFollowedByNative(long downloadHandleNative);<a
-            name="line.107"></a>
-<span class="sourceLineNo">108</span><a name="line.108"></a>
-<span class="sourceLineNo">109</span>    static native long getFollowingNative(long downloadHandleNative);<a
-            name="line.109"></a>
-<span class="sourceLineNo">110</span><a name="line.110"></a>
-<span class="sourceLineNo">111</span>    static native long getBelongsToNative(long downloadHandleNative);<a
-            name="line.111"></a>
-<span class="sourceLineNo">112</span><a name="line.112"></a>
-<span class="sourceLineNo">113</span>    static native String getDirNative(long downloadHandleNative);<a
-            name="line.113"></a>
-<span class="sourceLineNo">114</span><a name="line.114"></a>
-<span class="sourceLineNo">115</span>    static native List&lt;FileData&gt; getFilesDataNative(long downloadNative);<a
-            name="line.115"></a>
-<span class="sourceLineNo">116</span><a name="line.116"></a>
-<span class="sourceLineNo">117</span>    static native int getFileCountNative(long downloadNative);<a
-            name="line.117"></a>
-<span class="sourceLineNo">118</span><a name="line.118"></a>
-<span class="sourceLineNo">119</span>    static native FileData getFileNative(long downloadNative, int index);<a
-            name="line.119"></a>
-<span class="sourceLineNo">120</span><a name="line.120"></a>
-<span class="sourceLineNo">121</span>    static native BtMetaInfoData getBtMetaInfoNative(long downloadNative);<a
-            name="line.121"></a>
-<span class="sourceLineNo">122</span><a name="line.122"></a>
-<span class="sourceLineNo">123</span>    static native String getOptionNative(long downloadHandleNative, String name);<a
-            name="line.123"></a>
-<span class="sourceLineNo">124</span><a name="line.124"></a>
-<span class="sourceLineNo">125</span>    static native KeyValues getOptionsNative(long downloadHandleNative);<a
-            name="line.125"></a>
-<span class="sourceLineNo">126</span><a name="line.126"></a>
-<span class="sourceLineNo">127</span>    static native void deleteDownloadHandleNative(long downloadHandleNative);<a
-            name="line.127"></a>
-<span class="sourceLineNo">128</span><a name="line.128"></a>
-<span class="sourceLineNo">129</span>    static native int runNative(long sessionNative, int runMode);<a
-            name="line.129"></a>
-<span class="sourceLineNo">130</span><a name="line.130"></a>
-<span class="sourceLineNo">131</span>    static native int addUriNative(long sessionNative, long gid, List&lt;String&gt; uris, KeyValues options, int position);<a
-            name="line.131"></a>
-<span class="sourceLineNo">132</span><a name="line.132"></a>
-<span class="sourceLineNo">133</span>    static native int addMetaLinkNative(long sessionNative, List&lt;Long&gt; gidsNative, String metaLinkFilePath, KeyValues options, int position);<a
-            name="line.133"></a>
-<span class="sourceLineNo">134</span><a name="line.134"></a>
-<span class="sourceLineNo">135</span>    static native int addTorrentNative(long sessionNative, long gid, String torrentFilePath, KeyValues options, int position);<a
-            name="line.135"></a>
-<span class="sourceLineNo">136</span><a name="line.136"></a>
-<span class="sourceLineNo">137</span>    static native int addTorrentNative(long sessionNative, long gid, String torrentFilePath, List&lt;String&gt; webSeedUris, KeyValues options, int position);<a
-            name="line.137"></a>
-<span class="sourceLineNo">138</span><a name="line.138"></a>
-<span class="sourceLineNo">139</span>    static native List&lt;Long&gt; getActiveDownloadNative(long sessionNative);<a
-            name="line.139"></a>
-<span class="sourceLineNo">140</span><a name="line.140"></a>
-<span class="sourceLineNo">141</span>    static native int removeDownloadNative(long sessionNative, long gid, boolean force);<a
-            name="line.141"></a>
-<span class="sourceLineNo">142</span><a name="line.142"></a>
-<span class="sourceLineNo">143</span>    static native int pauseDownloadNative(long sessionNative, long gid, boolean force);<a
-            name="line.143"></a>
-<span class="sourceLineNo">144</span><a name="line.144"></a>
-<span class="sourceLineNo">145</span>    static native int unpauseDownloadNative(long sessionNative, long gid);<a
-            name="line.145"></a>
-<span class="sourceLineNo">146</span><a name="line.146"></a>
-<span class="sourceLineNo">147</span>    static native int changeOptionNative(long sessionNative, long gid, KeyValues options);<a
-            name="line.147"></a>
-<span class="sourceLineNo">148</span><a name="line.148"></a>
-<span class="sourceLineNo">149</span>    static native String getGlobalOptionNative(long sessionNative, String name);<a
-            name="line.149"></a>
-<span class="sourceLineNo">150</span><a name="line.150"></a>
-<span class="sourceLineNo">151</span>    static native KeyValues getGlobalOptionsNative(long sessionNative);<a
-            name="line.151"></a>
-<span class="sourceLineNo">152</span><a name="line.152"></a>
-<span class="sourceLineNo">153</span>    static native int changeGlobalOptionNative(long sessionNative, KeyValues options);<a
-            name="line.153"></a>
-<span class="sourceLineNo">154</span><a name="line.154"></a>
-<span class="sourceLineNo">155</span>    static native GlobalStat getGlobalStatNative(long sessionNative);<a
-            name="line.155"></a>
-<span class="sourceLineNo">156</span><a name="line.156"></a>
-<span class="sourceLineNo">157</span>    static native int changePositionNative(long sessionNative, long gid, int pos, int mode);<a
-            name="line.157"></a>
-<span class="sourceLineNo">158</span><a name="line.158"></a>
-<span class="sourceLineNo">159</span>    static native int shutdownNative(long sessionNative, boolean force);<a
-            name="line.159"></a>
-<span class="sourceLineNo">160</span><a name="line.160"></a>
-<span class="sourceLineNo">161</span>    static native long getDownloadHandleNative(long sessionNative, long gid);<a
-            name="line.161"></a>
-<span class="sourceLineNo">162</span>}<a name="line.162"></a>
+<span class="sourceLineNo">022</span><a name="line.22"></a>
+<span class="sourceLineNo">023</span>import java.util.List;<a name="line.23"></a>
+<span class="sourceLineNo">024</span><a name="line.24"></a>
+<span class="sourceLineNo">025</span>/**<a name="line.25"></a>
+<span class="sourceLineNo">026</span> * The static class which operates the global operations.<a name="line.26"></a>
+<span class="sourceLineNo">027</span> * Before you do anything with Aria2, you must call Aria2.initialize() first to initialize. After you finish your task, you need to call Aria2.deInitialize() to release the static global resources.<a
+            name="line.27"></a>
+<span class="sourceLineNo">028</span> *<a name="line.28"></a>
+<span class="sourceLineNo">029</span> * @author inCHOK<a name="line.29"></a>
+<span class="sourceLineNo">030</span> * @version Version 1.0<a name="line.30"></a>
+<span class="sourceLineNo">031</span> * @see Aria2#initialize()<a name="line.31"></a>
+<span class="sourceLineNo">032</span> * @see Aria2#deInitialize()<a name="line.32"></a>
+<span class="sourceLineNo">033</span> */<a name="line.33"></a>
+<span class="sourceLineNo">034</span>public class Aria2 {<a name="line.34"></a>
+<span class="sourceLineNo">035</span>    static {<a name="line.35"></a>
+<span class="sourceLineNo">036</span>        System.loadLibrary("aria2-native");<a name="line.36"></a>
+<span class="sourceLineNo">037</span>    }<a name="line.37"></a>
+<span class="sourceLineNo">038</span><a name="line.38"></a>
+<span class="sourceLineNo">039</span>    /**<a name="line.39"></a>
+<span class="sourceLineNo">040</span>     * The response code when any operation succeed.<a name="line.40"></a>
+<span class="sourceLineNo">041</span>     */<a name="line.41"></a>
+<span class="sourceLineNo">042</span>    public static final int RESPONSE_OK = 0;<a name="line.42"></a>
+<span class="sourceLineNo">043</span>    public static final int RESPONSE_REMAINING = 1;<a name="line.43"></a>
+<span class="sourceLineNo">044</span><a name="line.44"></a>
+<span class="sourceLineNo">045</span>    private Aria2() {<a name="line.45"></a>
+<span class="sourceLineNo">046</span>    }<a name="line.46"></a>
+<span class="sourceLineNo">047</span><a name="line.47"></a>
+<span class="sourceLineNo">048</span>    /**<a name="line.48"></a>
+<span class="sourceLineNo">049</span>     * Initialize the global data.<a name="line.49"></a>
+<span class="sourceLineNo">050</span>     * Call this static method &lt;strong&gt;only once&lt;/strong&gt; before any other operations of Aria2.<a
+            name="line.50"></a>
+<span class="sourceLineNo">051</span>     *<a name="line.51"></a>
+<span class="sourceLineNo">052</span>     * @return Return Aria2.RESPONSE_OK if succeed, or any other negative error code.<a
+            name="line.52"></a>
+<span class="sourceLineNo">053</span>     * @see Aria2#RESPONSE_OK<a name="line.53"></a>
+<span class="sourceLineNo">054</span>     */<a name="line.54"></a>
+<span class="sourceLineNo">055</span>    public static int initialize() {<a name="line.55"></a>
+<span class="sourceLineNo">056</span>        return Aria2.initializeNative();<a name="line.56"></a>
+<span class="sourceLineNo">057</span>    }<a name="line.57"></a>
+<span class="sourceLineNo">058</span><a name="line.58"></a>
+<span class="sourceLineNo">059</span>    /**<a name="line.59"></a>
+<span class="sourceLineNo">060</span>     * Release all the global data.<a name="line.60"></a>
+<span class="sourceLineNo">061</span>     * Call this static method &lt;strong&gt;only once&lt;/strong&gt; after all the tasks of Aria2 are finished.<a
+            name="line.61"></a>
+<span class="sourceLineNo">062</span>     *<a name="line.62"></a>
+<span class="sourceLineNo">063</span>     * @return Return Aria2.RESPONSE_OK if succeed, or any other negative error code.<a
+            name="line.63"></a>
+<span class="sourceLineNo">064</span>     * @see Aria2#RESPONSE_OK<a name="line.64"></a>
+<span class="sourceLineNo">065</span>     */<a name="line.65"></a>
+<span class="sourceLineNo">066</span>    public static int deInitialize() {<a name="line.66"></a>
+<span class="sourceLineNo">067</span>        return Aria2.deInitializeNative();<a name="line.67"></a>
+<span class="sourceLineNo">068</span>    }<a name="line.68"></a>
+<span class="sourceLineNo">069</span><a name="line.69"></a>
+<span class="sourceLineNo">070</span>    private static native int initializeNative();<a name="line.70"></a>
+<span class="sourceLineNo">071</span><a name="line.71"></a>
+<span class="sourceLineNo">072</span>    private static native int deInitializeNative();<a name="line.72"></a>
+<span class="sourceLineNo">073</span><a name="line.73"></a>
+<span class="sourceLineNo">074</span>    static native long newSessionNative(KeyValues options, SessionConfig sessionConfig);<a
+            name="line.74"></a>
+<span class="sourceLineNo">075</span><a name="line.75"></a>
+<span class="sourceLineNo">076</span>    static native int finalSessionNative(long sessionNative);<a name="line.76"></a>
+<span class="sourceLineNo">077</span><a name="line.77"></a>
+<span class="sourceLineNo">078</span>    static native long hexToGidNative(String hexGid);<a name="line.78"></a>
+<span class="sourceLineNo">079</span><a name="line.79"></a>
+<span class="sourceLineNo">080</span>    static native String gidToHexNative(long gid);<a name="line.80"></a>
+<span class="sourceLineNo">081</span><a name="line.81"></a>
+<span class="sourceLineNo">082</span>    static native boolean isNullNative(long gid);<a name="line.82"></a>
+<span class="sourceLineNo">083</span><a name="line.83"></a>
+<span class="sourceLineNo">084</span>    static native DownloadStatus getStatusNative(long downloadHandleNative);<a
+            name="line.84"></a>
+<span class="sourceLineNo">085</span><a name="line.85"></a>
+<span class="sourceLineNo">086</span>    static native long getTotalLengthNative(long downloadHandleNative);<a
+            name="line.86"></a>
+<span class="sourceLineNo">087</span><a name="line.87"></a>
+<span class="sourceLineNo">088</span>    static native long getCompletedLengthNative(long downloadHandleNative);<a
+            name="line.88"></a>
+<span class="sourceLineNo">089</span><a name="line.89"></a>
+<span class="sourceLineNo">090</span>    static native long getUploadedLengthNative(long downloadHandleNative);<a
+            name="line.90"></a>
+<span class="sourceLineNo">091</span><a name="line.91"></a>
+<span class="sourceLineNo">092</span>    static native String getBitFieldNative(long downloadHandleNative);<a
+            name="line.92"></a>
+<span class="sourceLineNo">093</span><a name="line.93"></a>
+<span class="sourceLineNo">094</span>    static native int getDownloadSpeedNative(long downloadHandleNative);<a
+            name="line.94"></a>
+<span class="sourceLineNo">095</span><a name="line.95"></a>
+<span class="sourceLineNo">096</span>    static native int getUploadSpeedNative(long downloadHandleNative);<a
+            name="line.96"></a>
+<span class="sourceLineNo">097</span><a name="line.97"></a>
+<span class="sourceLineNo">098</span>    static native String getInfoHashNative(long downloadHandleNative);<a
+            name="line.98"></a>
+<span class="sourceLineNo">099</span><a name="line.99"></a>
+<span class="sourceLineNo">100</span>    static native long getPieceLengthNative(long downloadHandleNative);<a
+            name="line.100"></a>
+<span class="sourceLineNo">101</span><a name="line.101"></a>
+<span class="sourceLineNo">102</span>    static native int getPieceCountNative(long downloadHandleNative);<a
+            name="line.102"></a>
+<span class="sourceLineNo">103</span><a name="line.103"></a>
+<span class="sourceLineNo">104</span>    static native int getConnectionCountNative(long downloadHandleNative);<a
+            name="line.104"></a>
+<span class="sourceLineNo">105</span><a name="line.105"></a>
+<span class="sourceLineNo">106</span>    static native int getErrorCodeNative(long downloadHandleNative);<a
+            name="line.106"></a>
+<span class="sourceLineNo">107</span><a name="line.107"></a>
+<span class="sourceLineNo">108</span>    static native List&lt;Long&gt; getFollowedByNative(long downloadHandleNative);<a
+            name="line.108"></a>
+<span class="sourceLineNo">109</span><a name="line.109"></a>
+<span class="sourceLineNo">110</span>    static native long getFollowingNative(long downloadHandleNative);<a
+            name="line.110"></a>
+<span class="sourceLineNo">111</span><a name="line.111"></a>
+<span class="sourceLineNo">112</span>    static native long getBelongsToNative(long downloadHandleNative);<a
+            name="line.112"></a>
+<span class="sourceLineNo">113</span><a name="line.113"></a>
+<span class="sourceLineNo">114</span>    static native String getDirNative(long downloadHandleNative);<a
+            name="line.114"></a>
+<span class="sourceLineNo">115</span><a name="line.115"></a>
+<span class="sourceLineNo">116</span>    static native List&lt;FileData&gt; getFilesDataNative(long downloadNative);<a
+            name="line.116"></a>
+<span class="sourceLineNo">117</span><a name="line.117"></a>
+<span class="sourceLineNo">118</span>    static native int getFileCountNative(long downloadNative);<a
+            name="line.118"></a>
+<span class="sourceLineNo">119</span><a name="line.119"></a>
+<span class="sourceLineNo">120</span>    static native FileData getFileNative(long downloadNative, int index);<a
+            name="line.120"></a>
+<span class="sourceLineNo">121</span><a name="line.121"></a>
+<span class="sourceLineNo">122</span>    static native BtMetaInfoData getBtMetaInfoNative(long downloadNative);<a
+            name="line.122"></a>
+<span class="sourceLineNo">123</span><a name="line.123"></a>
+<span class="sourceLineNo">124</span>    static native String getOptionNative(long downloadHandleNative, String name);<a
+            name="line.124"></a>
+<span class="sourceLineNo">125</span><a name="line.125"></a>
+<span class="sourceLineNo">126</span>    static native KeyValues getOptionsNative(long downloadHandleNative);<a
+            name="line.126"></a>
+<span class="sourceLineNo">127</span><a name="line.127"></a>
+<span class="sourceLineNo">128</span>    static native void deleteDownloadHandleNative(long downloadHandleNative);<a
+            name="line.128"></a>
+<span class="sourceLineNo">129</span><a name="line.129"></a>
+<span class="sourceLineNo">130</span>    static native int runNative(long sessionNative, int runMode);<a
+            name="line.130"></a>
+<span class="sourceLineNo">131</span><a name="line.131"></a>
+<span class="sourceLineNo">132</span>    static native int addUriNative(long sessionNative, long gid, List&lt;String&gt; uris, KeyValues options, int position);<a
+            name="line.132"></a>
+<span class="sourceLineNo">133</span><a name="line.133"></a>
+<span class="sourceLineNo">134</span>    static native int addMetaLinkNative(long sessionNative, List&lt;Long&gt; gids, String metaLinkFilePath, KeyValues options, int position);<a
+            name="line.134"></a>
+<span class="sourceLineNo">135</span><a name="line.135"></a>
+<span class="sourceLineNo">136</span>    static native int addTorrentNative(long sessionNative, long gid, String torrentFilePath, KeyValues options, int position);<a
+            name="line.136"></a>
+<span class="sourceLineNo">137</span><a name="line.137"></a>
+<span class="sourceLineNo">138</span>    static native int addTorrentNative(long sessionNative, long gid, String torrentFilePath, List&lt;String&gt; webSeedUris, KeyValues options, int position);<a
+            name="line.138"></a>
+<span class="sourceLineNo">139</span><a name="line.139"></a>
+<span class="sourceLineNo">140</span>    static native List&lt;Long&gt; getActiveDownloadNative(long sessionNative);<a
+            name="line.140"></a>
+<span class="sourceLineNo">141</span><a name="line.141"></a>
+<span class="sourceLineNo">142</span>    static native int removeDownloadNative(long sessionNative, long gid, boolean force);<a
+            name="line.142"></a>
+<span class="sourceLineNo">143</span><a name="line.143"></a>
+<span class="sourceLineNo">144</span>    static native int pauseDownloadNative(long sessionNative, long gid, boolean force);<a
+            name="line.144"></a>
+<span class="sourceLineNo">145</span><a name="line.145"></a>
+<span class="sourceLineNo">146</span>    static native int unpauseDownloadNative(long sessionNative, long gid);<a
+            name="line.146"></a>
+<span class="sourceLineNo">147</span><a name="line.147"></a>
+<span class="sourceLineNo">148</span>    static native int changeOptionNative(long sessionNative, long gid, KeyValues options);<a
+            name="line.148"></a>
+<span class="sourceLineNo">149</span><a name="line.149"></a>
+<span class="sourceLineNo">150</span>    static native String getGlobalOptionNative(long sessionNative, String name);<a
+            name="line.150"></a>
+<span class="sourceLineNo">151</span><a name="line.151"></a>
+<span class="sourceLineNo">152</span>    static native KeyValues getGlobalOptionsNative(long sessionNative);<a
+            name="line.152"></a>
+<span class="sourceLineNo">153</span><a name="line.153"></a>
+<span class="sourceLineNo">154</span>    static native int changeGlobalOptionNative(long sessionNative, KeyValues options);<a
+            name="line.154"></a>
+<span class="sourceLineNo">155</span><a name="line.155"></a>
+<span class="sourceLineNo">156</span>    static native GlobalStat getGlobalStatNative(long sessionNative);<a
+            name="line.156"></a>
+<span class="sourceLineNo">157</span><a name="line.157"></a>
+<span class="sourceLineNo">158</span>    static native int changePositionNative(long sessionNative, long gid, int pos, int mode);<a
+            name="line.158"></a>
+<span class="sourceLineNo">159</span><a name="line.159"></a>
+<span class="sourceLineNo">160</span>    static native int shutdownNative(long sessionNative, boolean force);<a
+            name="line.160"></a>
+<span class="sourceLineNo">161</span><a name="line.161"></a>
+<span class="sourceLineNo">162</span>    static native long getDownloadHandleNative(long sessionNative, long gid);<a
+            name="line.162"></a>
+<span class="sourceLineNo">163</span>}<a name="line.163"></a>
 
 
 
