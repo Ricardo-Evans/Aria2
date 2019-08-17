@@ -4,8 +4,8 @@
 #include <jni.h>
 #include <string>
 #include <android/log.h>
-#include "include/aria2.h"
-#include "include/com_inchok_aria2_Aria2.h"
+#include "aria2.h"
+#include "com_inchok_aria2_Aria2.h"
 
 #ifdef __cplusplus
 extern "C" {
